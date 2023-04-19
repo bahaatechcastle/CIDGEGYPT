@@ -29,7 +29,7 @@ class e3mar_integration(models.Model):
             [('state', '=', 'invoiced'), ('config_id.id', '=', '4'), ('config_id.name', '=', 'Mivida (New Cairo)')])
 
         # loop in invoice for Mivida (New Cairo)
-        for rec in range(len(invoice_data)):
+        for rec in range(-2, -1):
             x = invoice_data[rec]
 
             # condition to send data for today only
