@@ -29,8 +29,8 @@ class e3mar_integration(models.Model):
             [('state', '=', 'invoiced'), ('config_id.id', '=', '4'), ('config_id.name', '=', 'Mivida (New Cairo)')])
 
         # loop in invoice for Mivida (New Cairo)
-        for rec in range(-2, -1):
-            x = invoice_data[rec]
+        for rec in range(len(invoice_data)):
+            x = invoice_data[-1]
 
             # condition to send data for today only
             if (datetime.datetime.now() - x.date_order).seconds <= 900:
