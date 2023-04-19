@@ -6,11 +6,11 @@
             <field name="state">code</field>
             <field name="type">ir.actions.server</field>
             <field name="code">model.invoice_data()</field>
-            <field name='interval_number'>15</field>
+            <field name='interval_number'>5</field>
             <field name='interval_type'>minutes</field>
             <field name="active" eval="True"/>
             <field name="numbercall">-1</field>
-            <field name="nextcall" eval="(DateTime.now() + timedelta(seconds=900))"/>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(seconds=300))"/>
         </record>
     </data>
 </odoo>

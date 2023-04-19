@@ -33,7 +33,7 @@ class e3mar_integration(models.Model):
             x = invoice_data[rec]
 
             # condition to send data for today only
-            if (datetime.datetime.now() - x.date_order).seconds <= 1800:
+            if (datetime.datetime.now() - x.date_order).seconds <= 300:
 
                 # to count discount from invoice line
                 discount_product = []
