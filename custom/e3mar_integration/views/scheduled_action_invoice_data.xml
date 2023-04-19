@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="send_invoice_date" model="ir.cron">
+            <field name="name">Pos Order:Send Data</field>
+            <field name="model_id" ref="model_pos_order"/>
+            <field name="state">code</field>
+            <field name="type">ir.actions.server</field>
+            <field name="code">model.invoice_data()</field>
+            <field name='interval_number'>15</field>
+            <field name='interval_type'>minutes</field>
+            <field name="active" eval="True"/>
+            <field name="numbercall">-1</field>
+            <field name="nextcall" eval="(DateTime.now() + timedelta(seconds=900))"/>
+        </record>
+    </data>
+</odoo>
