@@ -30,10 +30,10 @@ class e3mar_integration(models.Model):
 
         # loop in invoice for Mivida (New Cairo)
         for rec in range(len(invoice_data)):
-            x = invoice_data[-1]
+            x = invoice_data[rec]
 
             # condition to send data for today only
-            if (datetime.datetime.now() - x.date_order).seconds <= 900:
+            if (datetime.datetime.now() - x.date_order).seconds >= 1800:
 
                 # to count discount from invoice line
                 discount_product = []
