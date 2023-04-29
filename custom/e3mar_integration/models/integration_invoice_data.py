@@ -11,6 +11,7 @@ class e3mar_integration(models.Model):
 
     def invoice_data(self):
 
+        print('################ DANE ################', datetime.datetime.now().date())
         # to login to the server and take token
         url1 = "https://rsmsapis.encopedia.net/webservice/RestApi/Users/Login"
         payload1 = 'userName=Mivida.Mall%40encopedia.net&password=%23Encopedia.MividaAPi%402023'
@@ -24,7 +25,7 @@ class e3mar_integration(models.Model):
         data1 = response1.json()
         token = data1['result']['token']
 
-        # to sent data to server
+        # to sent data to server and take invoice from mivida(new cairo) only
         invoice_data = self.env['pos.order'].search(
             [('state', '=', 'invoiced'), ('config_id.id', '=', '4'), ('config_id.name', '=', 'Mivida (New Cairo)')])
 
@@ -33,7 +34,7 @@ class e3mar_integration(models.Model):
             x = invoice_data[rec]
 
             # condition to send data for today only
-            if (datetime.datetime.now() - x.date_order).seconds <= 1800:
+            if (datetime.datetime.now() - x.date_order).seconds <= 1800 and x.date_order.date() == datetime.datetime.now().date():
 
                 # to count discount from invoice line
                 discount_product = []
@@ -49,16 +50,16 @@ class e3mar_integration(models.Model):
                     "store": "dfa20d0a832ede096f42d22d27e75021317a18e0361d86ede8468b575a6afb2b",
                     "invoice_no": x.account_move.name,
                     "invoice_date": str(x.date_order),
-                    "subtotal": x.amount_total,
+                    "subtotal": x.account_move.amount_untaxed,
                     "tax": x.amount_tax,
                     "service": "00.00",
-                    "total": x.amount_paid,
+                    "total": x.amount_total,
                     "discount": discount
                 }
 
                 # make a list to add a form json to all invoice
                 stages_list = [info]
-                
+
                 for date in range(len(stages_list)):
                     payload2 = json.dumps(
                         stages_list[date]
