@@ -33,5 +33,5 @@
     'demo': [
         'demo/demo.xml',
     ],
-    'license': 'lgpl-3'
+    #'license': 'lgpl-3'
 }
