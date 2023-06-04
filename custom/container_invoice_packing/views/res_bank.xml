@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="view_edit_sale_order_line_tree" model="ir.ui.view">
+            <field name="model">res.bank</field>
+            <field name="name">babk.view.edit.res.bank.view</field>
+            <field name="inherit_id" ref="base.view_res_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/group/group[@name='communication_details']/field[@name='email']"
+                       position="after">
+                    <field name="swift_code"/>
+                    <field name="branch"/>
+                    <field name="usd_iban"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
