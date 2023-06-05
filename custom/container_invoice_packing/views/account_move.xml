@@ -10,21 +10,26 @@
                         <group string="Invoice Data">
                             <field name="po_num"/>
 <!--                            <field name="Container_no"/>-->
-<!--                            <field name="total_gw"/>-->
+<!--                            <field name="total_m2"/>-->
                         </group>
                         <group string="Container Data">
                             <field name="po_destination"/>
                             <field name="terms_of_payment"/>
                             <field name="the_prices_are"/>
                             <field name="port_of_loading"/>
-                            <field name="container_num"  mode="tree">
+                            <field name="container_num" widget="one2many">
                                 <tree editable="bottom">
-                                    <field name="name"/>
+<!--                                    <field name="name"/>-->
+                                    <field name="container_num_id"/>
                                     <field name="total_pallets"/>
                                     <field name="total_bundle"/>
                                     <field name="hs_code"/>
                                     <field name="total_nw"/>
                                     <field name="total_gw"/>
+                                    <field name="box_num" widget="many2many_tags"/>
+                                    <field name="total_m2_con"/>
+                                    <field name="total_box"/>
+<!--                                    <field name="total_amount"/>-->
                                 </tree>
                             </field>
                         </group>
@@ -35,11 +40,14 @@
                     </page>
                     <page string="Packing Data" name="packing_data" attrs="{'invisible': [('packing', '!=', True)]}">
 <!--                        <field name="box_no"/>-->
-                        <field name="box_num" widget="section_and_note_one2many" mode="tree">
+                        <field name="box_num" widget="section_and_note_one2many" mode="tree" context="{'default_container_num': active_id}">
                             <tree editable="bottom">
-                                <field name="name"/>
+<!--                                <field name="name"/>-->
+                                <field name="box_num_id"/>
                                 <field name="container_num"/>
                                 <field name="product_ids" widget="many2many_tags"/>
+                                <field name="total_m2_box"/>
+                                <field name="total_amount"/>
                             </tree>
                         </field>
                     </page>

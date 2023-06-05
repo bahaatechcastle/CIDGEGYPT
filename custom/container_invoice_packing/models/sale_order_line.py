@@ -24,8 +24,8 @@ class code_product(models.Model):
         invoice_line['thickness'] = self.thickness
         invoice_line['no_of_tiles'] = self.no_of_tiles
         invoice_line['quantity'] = self.product_uom_qty
-        invoice_line['shape'] = self.product_uom_qty
-        invoice_line['surface'] = self.product_uom_qty
+        invoice_line['shape'] = self.shape
+        invoice_line['surface'] = self.surface
         return invoice_line
 
 

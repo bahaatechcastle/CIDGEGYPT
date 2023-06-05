@@ -47,7 +47,7 @@
                                                 style="font-size:18px;font-weight: bold;">
                                                 <br></br>
                                                 <span style="margin-top: 70px;">Invoice Container</span>
-                                                <span t-field="con.name"/>
+                                                <span t-field="con.container_num_id.name"/>
                                             </td>
                                         </tr>
                                     </table>
@@ -240,7 +240,7 @@
                                     <br></br>
                                     <table width="100%">
                                         <t t-foreach="o.invoice_line_ids" t-as="line">
-                                            <p t-if="line.container_num.name == con.name">
+                                            <p t-if="line.container_num.name== con.container_num_id.name">
                                                 <tr>
                                                     <td width="5%"
                                                         style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
@@ -313,7 +313,7 @@
                                                 </td>
                                                 <td style="margin: 5px; padding: 5px; border:1px solid #875A7B; text-align:center"
                                                     width="70px">
-                                                    <span t-field="o.total_bundle"/>
+                                                    <span t-field="con.total_bundle"/>
                                                 </td>
                                             </tr>
                                             <tr style="text-align:left;font-weight: bold;font-size:14px;">
@@ -321,7 +321,7 @@
                                                     Total Box
                                                 </td>
                                                 <td style="margin: 5px; padding: 5px; border:1px solid #875A7B ; text-align:center">
-                                                    <span t-field="o.box_no"/>
+                                                    <span t-field="con.total_box"/>
                                                 </td>
                                             </tr>
                                             <tr style="text-align:left;font-weight: bold;font-size:14px;">
@@ -329,7 +329,7 @@
                                                     Total M2
                                                 </td>
                                                 <td style="margin: 5px; padding: 5px; border:1px solid #875A7B ; text-align:center">
-                                                    <span t-field="o.total_m2"/>
+                                                    <span t-field="con.total_m2_con"/>
                                                 </td>
                                             </tr>
                                             <tr style="text-align:left;font-weight: bold;font-size:14px;">
@@ -337,7 +337,7 @@
                                                     Total (GW)
                                                 </td>
                                                 <td style="margin: 5px; padding: 5px; border:1px solid #875A7B; text-align:center">
-                                                    <span t-field="o.total_gw"/>
+                                                    <span t-field="con.total_gw"/>
                                                 </td>
                                             </tr>
                                         </table>

@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="container_num_list_action">
+            <field name="name">Container Num</field>
+            <field name="res_model">container_num</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="box_num_list_action">
+            <field name="name">Box Num</field>
+            <field name="res_model">box_num</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="packing" id="box_container_num" parent="account.menu_finance"/>
+        <menuitem name="Box Number" id="box_num_menu" parent="box_container_num" action="box_num_list_action"/>
+        <menuitem name="Containerox Number" id="container_num_menu" parent="box_container_num" action="container_num_list_action"/>
+
+
+        <record id="container_num_tree_view" model="ir.ui.view">
+            <field name="name">container.num.tree</field>
+            <field name="model">container_num</field>
+            <field name="arch" type="xml">
+                <tree string="Container Num Tree">
+                    <header>
+                        <button name="330" type="action" string="Launch Plan" context="{'action_plan': True}"/>
+                    </header>
+                    <field name="name"/>
+                    <field name="total_bundle"/>
+                    <field name="total_pallets"/>
+                    <field name="total_box"/>
+                    <field name="total_gw"/>
+                    <field name="total_nw"/>
+                    <field name="hs_code"/>
+                    <field name="my_account_move_id_co"/>
+                    <field name="box_num"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="box_num_tree_view" model="ir.ui.view">
+            <field name="name">box.num.tree</field>
+            <field name="model">box_num</field>
+            <field name="arch" type="xml">
+                <tree string="Box Num Tree">
+                    <header>
+                        <button name="330" type="action" string="Launch Plan" context="{'action_plan': True}"/>
+                    </header>
+                    <field name="name"/>
+                    <field name="product_ids"/>
+                    <field name="my_account_move_id"/>
+                    <field name="container_num"/>
+<!--                    <field name="total_m2"/>-->
+<!--                    <field name="total_box"/>-->
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>
