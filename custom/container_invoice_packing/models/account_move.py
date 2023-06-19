@@ -27,6 +27,14 @@ class ShippingData(models.Model):
     terms_of_payment = fields.Char(string='Terms of payment:', tracking=True)
     the_prices_are = fields.Char(string='The prices are:', tracking=True)
     port_of_loading = fields.Char(string='Port of Loading:', tracking=True)
+    # box = fields.Boolean(string='Box', tracking=True)
+
+    @api.onchange('packing')
+    def _sale_id(self):
+        for rec in self:
+            rec.box_num = rec.env['stock.picking'].search(
+                [('origin', '=', rec.invoice_origin)]).box_num
+            print('ffffffffffffffffffffffff', rec.box_num)
 
 
 

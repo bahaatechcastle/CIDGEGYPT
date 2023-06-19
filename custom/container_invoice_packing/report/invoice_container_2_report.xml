@@ -19,12 +19,12 @@
             <field name="page_height">0</field>
             <field name="page_width">0</field>
             <field name="orientation">Portrait</field>
-            <field name="margin_top">80</field>
+            <field name="margin_top">100</field>
             <field name="margin_bottom">30</field>
             <field name="margin_left">7</field>
             <field name="margin_right">7</field>
             <field name="header_line" eval="False"/>
-            <field name="header_spacing">70</field>
+            <field name="header_spacing">90</field>
             <field name="dpi">90</field>
             <field name="report_ids"
                    eval="[(6,0, [ref('container_invoice_packing.action_report_invoice_cidg_2')])]"/>
@@ -56,15 +56,15 @@
                                 <div class="header">
                                     <div class="row" style="border: 1px solid black;">
                                         <div class="col-7"
-                                             style="padding-left: 30px; padding-top: 15px; padding-bottom: 15px;">
-                                            <span style="font-size: 35px; font-family: 'Times New Roman', Times, serif; color:#6652ad"
+                                             style="padding-left: 30px;">
+                                            <span style="font-size: 30px; font-family: 'Times New Roman', Times, serif; color:#6652ad; font-weight: bold; padding-top: 10px; display: block;"
                                                   t-field="o.company_id.name"/>
                                         </div>
                                         <div class="col-7" style="padding-left: 20px">
                                             <span>
                                                 <img t-if="o.company_id.logo"
                                                      t-att-src="image_data_uri(o.company_id.logo)"
-                                                     style="max-height: 70px;" alt="Logo"/>
+                                                     style="max-height: 100px;" alt="Logo"/>
                                             </span>
                                         </div>
 
@@ -102,7 +102,7 @@
                                                         </div>
                                                     </td>
                                                     <td style="padding-top: 10px; width: 500px; border: 1px solid black;">
-                                                        <div style="margin-right: 10px; max-height:50%;min-height:50%; color:#ffffff; "
+                                                        <div style="margin-right: 10px; max-height:100px;min-height:100px; color:#ffffff; "
                                                              height="150px">
                                                             <div t-field="o.company_id.name" style="padding-top: 5px"/>
                                                             <div t-field="o.company_id.street"
@@ -136,7 +136,7 @@
                                                             Consignee
                                                         </div>
                                                     </td>
-                                                    <td style="padding-top: 10px; width: 500px; border: 2px solid black; padding-left: 5px;">
+                                                    <td style="padding-top: 10px; width: 500px; border: 2px solid black; padding-left: 5px; padding-top : 20px; padding-bottom : 20px;">
                                                         <div t-if="o.partner_shipping_id"
                                                              style="margin-right: 10px; max-height:50%;min-height:50%;">
                                                             <div t-field="o.partner_shipping_id"
@@ -251,7 +251,7 @@
                                                         1.The Quantity (m2):
                                                     </td>
                                                     <td width="10%">
-                                                        <span t-field="con.total_m2_con"/>
+<!--                                                        <span t-field="con.total_m2_con"/>-->
                                                     </td>
                                                     <td colspan="6" width="70%">
                                                         m2
@@ -268,7 +268,7 @@
                                                         2.Number Of Boxs :
                                                     </td>
                                                     <td width="12%">
-                                                        <span t-field="con.total_box"/>
+<!--                                                        <span t-field="con.total_box"/>-->
                                                     </td>
                                                     <td colspan="2" width="22%">
                                                         Number Of Pallets :

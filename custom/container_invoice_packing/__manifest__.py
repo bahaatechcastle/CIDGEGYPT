@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "invoice_report_CIDG",
+    'name': "cidg_packing_manf",
 
     'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
@@ -22,21 +22,24 @@
     # any module necessary for this one to work correctly
     'depends': ['base',
                 'account',
-                'sale'],
+                'sale',
+                'mrp',
+                ],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        # 'views/container_num.xml',
-        'views/sale_order.xml',
-        'views/res_bank.xml',
-        'views/account_move.xml',
-        'report/invoice_container_report.xml',
         'report/invoice_container_2_report.xml',
+        'report/invoice_container_report.xml',
         'report/packing_container_report.xml',
+        'views/inherit_packing_report.xml',
+        'views/inherit_manf_report.xml',
+        'views/account_move.xml',
+        'views/res_bank.xml',
+        'views/sale_order.xml',
+        'views/mrp_production.xml',
+        'views/stock_picking.xml',
+        # 'views/container_num.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+
 }

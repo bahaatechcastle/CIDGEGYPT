@@ -321,7 +321,7 @@
                                                     Total Box
                                                 </td>
                                                 <td style="margin: 5px; padding: 5px; border:1px solid #875A7B ; text-align:center">
-                                                    <span t-field="con.total_box"/>
+<!--                                                    <span t-field="con.total_box"/>-->
                                                 </td>
                                             </tr>
                                             <tr style="text-align:left;font-weight: bold;font-size:14px;">
@@ -329,7 +329,7 @@
                                                     Total M2
                                                 </td>
                                                 <td style="margin: 5px; padding: 5px; border:1px solid #875A7B ; text-align:center">
-                                                    <span t-field="con.total_m2_con"/>
+<!--                                                    <span t-field="con.total_m2_con"/>-->
                                                 </td>
                                             </tr>
                                             <tr style="text-align:left;font-weight: bold;font-size:14px;">

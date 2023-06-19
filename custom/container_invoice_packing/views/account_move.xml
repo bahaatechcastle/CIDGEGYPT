@@ -27,8 +27,9 @@
                                     <field name="total_nw"/>
                                     <field name="total_gw"/>
                                     <field name="box_num" widget="many2many_tags"/>
-                                    <field name="total_m2_con"/>
-                                    <field name="total_box"/>
+<!--                                    <field name="box_num_ra" widget="many2many_tags"/>-->
+<!--                                    <field name="total_m2_con"/>-->
+<!--                                    <field name="total_box"/>-->
 <!--                                    <field name="total_amount"/>-->
                                 </tree>
                             </field>
@@ -40,14 +41,18 @@
                     </page>
                     <page string="Packing Data" name="packing_data" attrs="{'invisible': [('packing', '!=', True)]}">
 <!--                        <field name="box_no"/>-->
-                        <field name="box_num" widget="section_and_note_one2many" mode="tree" context="{'default_container_num': active_id}">
+                        <field name="box_num" widget="section_and_note_one2many" mode="tree" context="{'default_container_num': active_id}" nolabel="1" colspan="2">
                             <tree editable="bottom">
-<!--                                <field name="name"/>-->
+                                <!--                                <field name="name"/>-->
                                 <field name="box_num_id"/>
                                 <field name="container_num"/>
-                                <field name="product_ids" widget="many2many_tags"/>
-                                <field name="total_m2_box"/>
-                                <field name="total_amount"/>
+                                <!--                                <field name="packing_id_box"/>-->
+                                <field name="sale_name"/>
+                                <!--                                <field name="product_ids" widget="many2many_tags"/>-->
+                                <field name="product_id"/>
+                                <field name="qty_box"/>
+                                <!--                                <field name="total_m2_box"/>-->
+                                <!--                                <field name="total_amount"/>-->
                             </tree>
                         </field>
                     </page>

@@ -190,43 +190,43 @@
                                                 </thead>
                                                 <tbody>
                                                     <t t-foreach="o.box_num" t-as="line">
-                                                        <t t-foreach="line.product_ids" t-as="pro">
-                                                            <p t-if="pro.container_num.name == con.container_num_id.name">
-                                                                <tr style="height: 40px;">
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <!--                                                                        <t t-esc="line_index +1"/>-->
-                                                                        <span t-field="line.box_num_id.name"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.name"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.shape"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.surface"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <!--                                                                        <span t-field="line.name"/>-->
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.no_of_tiles"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.lenght"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.width"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.thickness"/>
-                                                                    </td>
-                                                                    <td style=" padding:10px; text-align:center; font-size:12px">
-                                                                        <span t-field="pro.quantity"/>
-                                                                    </td>
-                                                                </tr>
-                                                            </p>
-                                                        </t>
+                                                        <!--                                                        <t t-foreach="line.product_ids" t-as="pro">-->
+                                                        <p t-if="line.product_id.container_num.name == con.container_num_id.name">
+                                                            <tr style="height: 40px;">
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <!--                                                                        <t t-esc="line_index +1"/>-->
+                                                                    <span t-field="line.box_num_id.name"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.shape"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.surface"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <!--                                                                        <span t-field="line.name"/>-->
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.no_of_tiles"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.lenght"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.width"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.thickness"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.product_uom_qty"/>
+                                                                </td>
+                                                            </tr>
+                                                        </p>
+                                                        <!--                                                        </t>-->
                                                     </t>
                                                     <tr>
                                                         <td colspan="4"
@@ -234,14 +234,14 @@
                                                             <span>Total Of Box</span>
                                                         </td>
                                                         <td style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)">
-                                                            <span t-field="con.total_box"/>
+                                                            <!--                                                            <span t-field="con.total_box"/>-->
                                                         </td>
                                                         <td style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)"
                                                             colspan="4">
 
                                                         </td>
                                                         <td style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)">
-                                                            <span t-field="con.total_m2_con"/>
+                                                            <!--                                                            <span t-field="con.total_m2_con"/>-->
                                                             <span>M2</span>
                                                         </td>
                                                     </tr>
@@ -262,7 +262,7 @@
                                                         1.The Quantity(m2):
                                                     </td>
                                                     <td width="10%">
-                                                        <span t-field="con.total_m2_con"/>
+                                                        <!--                                                        <span t-field="con.total_m2_con"/>-->
                                                     </td>
                                                     <td colspan="6" width="70%">
                                                         m2
@@ -279,7 +279,7 @@
                                                         2.Number Of Boxs :
                                                     </td>
                                                     <td width="12%">
-                                                        <span t-field="con.total_box"/>
+                                                        <!--                                                        <span t-field="con.total_box"/>-->
                                                     </td>
                                                     <td colspan="2" width="22%">
                                                         Number Of Pallets :

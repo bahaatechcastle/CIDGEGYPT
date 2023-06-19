@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <record id="view_notebook_stock_picking_form" model="ir.ui.view">
+            <field name="model">stock.picking</field>
+            <field name="name">stock.picking.shipping.data</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//page[@name='note']" position="after">
+                    <page string="Sale Line" name="my_sale_order_ids" attrs="{'invisible': [('box', '!=', True)]}">
+                        <group string="Sale Line">
+                            <field name="my_sale_order_ids" widget="section_and_note_one2many" mode="tree" nolabel="1"
+                                   colspan="2">
+                                <tree editable="bottom">
+
+                                    <!--                                    <field name="product_id"/>-->
+                                    <!--                                    <field name="packing_id"/>-->
+                                    <!--                                    <field name="name"/>-->
+                                    <!--                                    <field name="name"/>-->
+                                    <field name="product_template_id"/>
+                                    <field name="name"/>
+                                    <!--                                    <field name="container_num"/>-->
+                                    <!--                                    <field name="box_num"/>-->
+                                    <field name="item_code"/>
+                                    <field name="shape"/>
+                                    <field name="surface"/>
+                                    <field name="lenght"/>
+                                    <field name="width"/>
+                                    <field name="thickness"/>
+                                    <field name="no_of_tiles"/>
+                                    <field name="product_uom_qty"/>
+                                    <!--                                    <field name="total_amount"/>-->
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                    <page string="Box Number" name="packing_data" attrs="{'invisible': [('box', '!=', True)]}">
+                        <!--                        <field name="box_no"/>-->
+                        <field name="box_num" widget="section_and_note_one2many" mode="tree" nolabel="1" colspan="2">
+                            <!--                               context="{'default_container_num': active_id}">-->
+                            <tree editable="bottom">
+                                <!--                                <field name="name"/>-->
+                                <field name="box_num_id"/>
+                                <field name="container_num"/>
+                                <!--                                <field name="packing_id_box"/>-->
+                                <field name="sale_name"/>
+                                <!--                                <field name="product_ids" widget="many2many_tags"/>-->
+                                <field name="product_id"/>
+                                <field name="dis_product"/>
+                                <field name="qty_box"/>
+                                <!--                                <field name="total_m2_box"/>-->
+                                <!--                                <field name="total_amount"/>-->
+                            </tree>
+                        </field>
+                    </page>
+<!--                    <page string="Box Number Invoice" name="packing_data_invoice"-->
+<!--                          attrs="{'invisible': [('box', '!=', True)]}">-->
+<!--                        &lt;!&ndash;                        <field name="box_no"/>&ndash;&gt;-->
+<!--                        <field name="pa_in_ids" widget="section_and_note_one2many" mode="tree" nolabel="1" colspan="2">-->
+<!--                            &lt;!&ndash;                               context="{'default_container_num': active_id}">&ndash;&gt;-->
+<!--                            <tree editable="bottom">-->
+<!--                                &lt;!&ndash;                                <field name="name"/>&ndash;&gt;-->
+<!--                                <field name="num_box"/>-->
+<!--                                <field name="container_num"/>-->
+<!--                                &lt;!&ndash;                                <field name="packing_id_box"/>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                <field name="sale_name"/>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                <field name="product_ids" widget="many2many_tags"/>&ndash;&gt;-->
+<!--                                <field name="product_ids" widget="many2many_tags"/>-->
+<!--                                &lt;!&ndash;                                <field name="qty_box"/>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                <field name="total_m2_box"/>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                                <field name="total_amount"/>&ndash;&gt;-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </page>-->
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="box"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

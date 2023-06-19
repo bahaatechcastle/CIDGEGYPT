@@ -16,6 +16,10 @@
                     <field name="shape"/>
                     <field name="surface"/>
                 </xpath>
+                <xpath expr="//field[@name='partner_id']"
+                       position="after">
+                    <field name="mo"/>
+                </xpath>
             </field>
         </record>
     </data>
