@@ -1,133 +1,80 @@
 <odoo>
     <data>
         <template id="report_packing_box" inherit_id="stock.report_picking">
-            <xpath expr="//div[hasclass('page')]" position="replace">
-                <div class="page">
-                    <h1 t-field="o.name" class="mt0 float-left"/>
-                    <div class="row mt48 mb32">
-                        <div t-if="o.origin" class="col-auto" name="div_origin">
-                            <strong>Order:</strong>
-                            <p t-field="o.origin"/>
-                        </div>
-                        <div class="col-auto" name="div_state">
-                            <strong>Status:</strong>
-                            <p t-field="o.state"/>
-                        </div>
-                        <div class="col-auto" name="div_sched_date">
-                            <strong>Scheduled Date:</strong>
-                            <p t-field="o.scheduled_date"/>
-                        </div>
-                        <div class="col-auto" name="div_sched_date">
-                            <strong>Partner Code:</strong>
-                            <p t-field="o.code_partner"/>
-                        </div>
-                    </div>
-                    <table class="table table-sm">
-                        <thead>
+            <xpath expr='//table' position="replace">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>
+                                <strong>Number</strong>
+                            </th>
+                            <th>
+                                <strong>Product</strong>
+                            </th>
+                            <th>
+                                <strong>Code</strong>
+                            </th>
+                            <th>
+                                <strong>Shape</strong>
+                            </th>
+                            <th>
+                                <strong>surface</strong>
+                            </th>
+                            <th>
+                                <strong>Lenght</strong>
+                            </th>
+                            <th>
+                                <strong>Width</strong>
+                            </th>
+                            <th>
+                                <strong>Thickness</strong>
+                            </th>
+                            <th>
+                                <strong>No of Tiles</strong>
+                            </th>
+                            <th>
+                                <strong>Qty</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- In case you come across duplicated lines, ask NIM or LAP -->
+                        <t t-foreach="o.box_num" t-as="ml">
                             <tr>
-                                <th>
-                                    <strong>Number</strong>
-                                </th>
-                                <th>
-                                    <strong>Product</strong>
-                                </th>
-                                <th>
-                                    <strong>Code</strong>
-                                </th>
-                                <th>
-                                    <strong>Shape</strong>
-                                </th>
-                                <th>
-                                    <strong>surface</strong>
-                                </th>
-                                <th>
-                                    <strong>Lenght</strong>
-                                </th>
-                                <th>
-                                    <strong>Width</strong>
-                                </th>
-                                <th>
-                                    <strong>Thickness</strong>
-                                </th>
-                                <th>
-                                    <strong>No of Tiles</strong>
-                                </th>
-                                <th>
-                                    <strong>Qty</strong>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- In case you come across duplicated lines, ask NIM or LAP -->
-                            <t t-foreach="o.box_num" t-as="ml">
-                                <tr>
-                                    <td>
-                                        <span t-field="ml.box_num_id.name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ml.product_id.display_name"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="ml.product_id.item_code"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.shape"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.surface"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.lenght"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.width"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.thickness"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.no_of_tiles"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="ml.product_id.product_uom_qty"/>
-                                    </td>
-                                </tr>
-                            </t>
-                        </tbody>
-                    </table>
-                    <table class="table table-sm"
-                           t-if="o.package_level_ids and o.picking_type_entire_packs and o.state in ['assigned', 'done']">
-                        <thead>
-                            <tr>
-                                <th name="th_package">Package</th>
-                                <th name="th_pko_from" t-if="o.picking_type_id.code != 'incoming'"
-                                    groups="stock.group_stock_multi_locations">From
-                                </th>
-                                <th name="th_pki_from" t-if="o.picking_type_id.code != 'outgoing'"
-                                    groups="stock.group_stock_multi_locations">To
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr t-foreach="o.package_level_ids.sorted(key=lambda p: p.package_id.name)" t-as="package">
-                                <t t-set="package" t-value="package.with_context(picking_id=o.id)"/>
-                                <td name="td_pk_barcode">
-                                    <div t-field="package.package_id.name"
-                                         t-options="{'widget': 'barcode', 'humanreadable': 1, 'width': 600, 'height': 100, 'img_style': 'width:300px;height:50px;margin-left: -50px;'}"/>
-                                    <br/>
+                                <td>
+                                    <span t-field="ml.box_num_id.name"/>
                                 </td>
-                                <td t-if="o.picking_type_id.code != 'incoming'"
-                                    groups="stock.group_stock_multi_locations">
-                                    <span t-field="package.location_id"/>
+                                <td>
+                                    <span t-field="ml.product_id.display_name"/>
                                 </td>
-                                <td t-if="o.picking_type_id.code != 'outgoing'"
-                                    groups="stock.group_stock_multi_locations">
-                                    <span t-field="package.location_dest_id"/>
+                                <td>
+                                    <span t-field="ml.product_id.item_code"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.shape"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.surface"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.lenght"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.width"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.thickness"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.no_of_tiles"/>
+                                </td>
+                                <td>
+                                    <span t-esc="ml.product_id.product_uom_qty"/>
                                 </td>
                             </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        </t>
+                    </tbody>
+                </table>
             </xpath>
         </template>
     </data>
