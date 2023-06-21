@@ -36,7 +36,6 @@
         'views/inherit_manf_report.xml',
         'views/account_move.xml',
         'views/res_bank.xml',
-        'views/res_partner.xml',
         'views/sale_order.xml',
         'views/mrp_production.xml',
         'views/stock_picking.xml',
