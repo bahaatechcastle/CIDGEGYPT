@@ -16,7 +16,7 @@
                     <field name="surface"/>
                     <field name="sale"/>
 <!--                    <field name="order_partner_id"/>-->
-<!--                    <field name="code_partner"/>-->
+                    <field name="code_partner"/>
                 </xpath>
             </field>
         </record>
