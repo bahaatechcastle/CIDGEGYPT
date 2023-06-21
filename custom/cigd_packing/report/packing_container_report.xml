@@ -1,0 +1,389 @@
+<odoo>
+    <data>
+        <record id="action_report_packing_cidg" model="ir.actions.report">
+            <field name="name">Packing Containers</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">container_invoice_packing.report_packing_container</field>
+            <field name="report_file">container_invoice_packing.report_packing_container</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="print_report_name">'Print - %s(Packing)' % (object.name).replace('/', '')</field>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="id_report_packing_container_paper" model="report.paperformat">
+            <field name="name">report Packing container</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">120</field>
+            <field name="margin_bottom">30</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">110</field>
+            <field name="dpi">90</field>
+            <field name="report_ids"
+                   eval="[(6,0, [ref('container_invoice_packing.action_report_packing_cidg')])]"/>
+        </record>
+
+        <template id="report_packing_container">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-foreach="o.container_num" t-as="con">
+                        <t t-call="web.basic_layout">
+                            <div class="page">
+                                <div class="oe_structure"/>
+                                <style>
+
+                                    td {
+                                    border:1px solid #000000;
+                                    text-align:left;
+                                    font-size:13px;
+                                    font-weight:bold;
+                                    padding:2px
+                                    }
+                                    table {
+                                    border:2px solid black;
+                                    }
+
+                                </style>
+                                <div class="header">
+                                    <div class="row" style="border: 1px solid black;">
+                                        <div class="col-7"
+                                             style="padding-left: 30px; padding-top: 15px; padding-bottom: 15px;">
+                                            <span style="font-size: 35px; font-family: 'Times New Roman', Times, serif; color:#6652ad"
+                                                  t-field="o.company_id.name"/>
+                                        </div>
+                                        <div class="col-7" style="padding-left: 20px">
+                                            <span>
+                                                <img t-if="o.company_id.logo"
+                                                     t-att-src="image_data_uri(o.company_id.logo)"
+                                                     style="max-height: 70px;" alt="Logo"/>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                    <br></br>
+                                    <div style="border: 3px solid #5c7a2b;"/>
+                                    <br></br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <table>
+                                                <tr>
+                                                    <td style="border: 2px solid black; width: 50px; text-align:center;">
+                                                        <span>Date</span>
+                                                    </td>
+                                                    <td style="border: 2px solid black; width: 100px; text-align:center;">
+                                                        <span t-field="o.invoice_date"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6"
+                                             style="font-size:20px; color:rgb(255, 0, 0); font-weight:bold;">
+                                            Packing :
+                                            <span t-field="o.name"/>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <table>
+                                                <tr style="height: 140px;">
+                                                    <td style="padding-left: 30px; width: 110px; position: relative; padding-top: 60px; border: 1px solid black;">
+                                                        <div style="position: absolute; bottom: 10; right: 1;">
+                                                            <span>seller</span>
+                                                        </div>
+                                                    </td>
+                                                    <td style="padding-top: 10px; width: 500px; border: 1px solid black;">
+                                                        <div style="margin-right: 10px; max-height:50%;min-height:50%;"
+                                                             height="150px">
+                                                            <div t-field="o.company_id.name" style="padding-top: 5px"/>
+                                                            <div t-field="o.company_id.street"
+                                                                 style="padding-top: 5px"/>
+                                                            <div t-field="o.company_id.street2"
+                                                                 style="padding-top: 5px"/>
+                                                            <div style="padding-top: 5px">
+                                                                <span t-field="o.company_id.city"/>
+                                                                ,
+                                                                <span t-field="o.company_id.state_id"/>
+                                                                ,
+                                                                <span t-field="o.company_id.city"/>
+                                                            </div>
+                                                            <div t-field="o.company_id.country_id"
+                                                                 style="padding-top: 5px"/>
+                                                            <div style="padding-top: 5px">
+                                                                phone :
+                                                                (<span t-field="o.company_id.zip"/>)
+                                                                <span t-field="o.company_id.phone"/>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-6">
+                                            <table>
+                                                <tr style="height: 140px;">
+                                                    <td style="padding-left: 5px; width: 110px; position: relative; padding-top: 60px; border: 2px solid black;">
+                                                        <div style="position: absolute; bottom: 10; right: 1; ">
+                                                            Consignee
+                                                        </div>
+                                                    </td>
+                                                    <td style="padding-top: 10px; width: 500px; border: 2px solid black; padding-left: 5px;">
+                                                        <div t-if="o.partner_shipping_id"
+                                                             style="margin-right: 10px; max-height:50%;min-height:50%;">
+                                                            <div t-field="o.partner_shipping_id"
+                                                                 t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"
+                                                                 name="purchase_shipping_address"/>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br></br>
+                                        <br></br>
+                                    </div>
+                                </div>
+                                <div class="body">
+                                    <div style="height: 100%;width: 100%;">
+                                        <div>
+                                            <table width="100%"
+                                                   style="border: 2px solid black;">
+                                                <thead>
+                                                    <tr style="height: 30px;">
+                                                        <td style="padding:10px; text-align:center; width: 5%; font-size:14px">
+                                                            No. Of Boxes
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 20%; font-size:14px">
+                                                            Material
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 10%; font-size:14px">
+                                                            Shape
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 13%; font-size:14px">
+                                                            Surface
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 7%; font-size:14px">
+                                                            No. Of Boxes
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 7%; font-size:14px">
+                                                            No. Of Tiles
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 7%; font-size:14px">
+                                                            Lenght (MM)
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 7%; font-size:14px">
+                                                            Width (MM)
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 7%; font-size:14px">
+                                                            Thickness (MM)
+                                                        </td>
+                                                        <td style="padding:10px; text-align:center; width: 17%; font-size:14px">
+                                                            Area (M2)
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="o.box_num" t-as="line">
+                                                        <!--                                                        <t t-foreach="line.product_ids" t-as="pro">-->
+                                                        <p t-if="line.container_num.name == con.container_num_id.name">
+                                                            <tr style="height: 40px;">
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <!--                                                                        <t t-esc="line_index +1"/>-->
+                                                                    <span t-field="line.box_num_id.name"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.shape"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.surface"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <!--                                                                        <span t-field="line.name"/>-->
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.no_of_tiles"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.lenght"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.width"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.product_id.thickness"/>
+                                                                </td>
+                                                                <td style=" padding:10px; text-align:center; font-size:12px">
+                                                                    <span t-field="line.qty_box"/>
+                                                                </td>
+                                                            </tr>
+                                                        </p>
+                                                        <!--                                                        </t>-->
+                                                    </t>
+                                                    <tr>
+                                                        <td colspan="4"
+                                                            style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)">
+                                                            <span>Total Of Box</span>
+                                                        </td>
+                                                        <td style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)">
+                                                            <span t-field="con.total_box"/>
+                                                        </td>
+                                                        <td style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)"
+                                                            colspan="4">
+
+                                                        </td>
+                                                        <td style=" padding:10px; text-align:center; font-size:14px; color:rgb(255, 0, 0)">
+                                                            <span t-field="con.total_m2_con"/>
+                                                            <span>M2</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <br></br>
+                                        <div>
+                                            <table width="70%">
+                                                <tr>
+                                                    <td colspan="9"
+                                                        style="text-align:center; color:rgb(255, 0, 0); padding:3px">
+                                                        Containers details
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" width="22%">
+                                                        1.The Quantity(m2):
+                                                    </td>
+                                                    <td width="10%">
+                                                        <span t-field="con.total_m2_con"/>
+                                                    </td>
+                                                    <td colspan="6" width="70%">
+                                                        m2
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="9"
+                                                        style="text-align:center; color:rgb(255, 0, 0); color:hsla(0, 100%, 50%, 0)">
+                                                        muhamed
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" width="22%">
+                                                        2.Number Of Boxs :
+                                                    </td>
+                                                    <td width="12%">
+                                                        <span t-field="con.total_box"/>
+                                                    </td>
+                                                    <td colspan="2" width="22%">
+                                                        Number Of Pallets :
+                                                    </td>
+                                                    <td width="12%">
+                                                        <span t-field="con.total_pallets"/>
+                                                    </td>
+                                                    <td colspan="2" width="20%">
+                                                        Number Of Bundles :
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="con.total_bundle"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="9"
+                                                        style="text-align:center; color:rgb(255, 0, 0); color:hsla(0, 100%, 50%, 0)">
+                                                        muhamed
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="12%">
+                                                        3.HS Code :
+                                                    </td>
+                                                    <td colspan="8">
+                                                        <span t-field="con.hs_code"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="9"
+                                                        style="text-align:center; color:rgb(255, 0, 0); color:hsla(0, 100%, 50%, 0)">
+                                                        muhamed
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" width="20%">
+                                                        4.Net Weight (KG) :
+                                                    </td>
+                                                    <td colspan="2" width="18%">
+                                                        <span t-field="con.total_nw"/>
+                                                    </td>
+                                                    <td colspan="2" width="20%">
+
+                                                    </td>
+                                                    <td width="22%">
+                                                        Gross Weight(KG) :
+                                                    </td>
+                                                    <td colspan="2" width="20%">
+                                                        <span t-field="con.total_gw"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br></br>
+                                        <div>
+                                            <table width="70%">
+                                                <tr>
+                                                    <td colspan="2">
+                                                        1.Goods are made in Egypt.
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"
+                                                        style="text-align:center; color:rgb(255, 0, 0); color:hsla(0, 100%, 50%, 0)">
+                                                        1
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="35">
+                                                        2.Port of destination:
+                                                    </td>
+                                                    <td width="65%">
+                                                        <span t-field="o.po_destination"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2"
+                                                        style="text-align:center; color:rgb(255, 0, 0); color:hsla(0, 100%, 50%, 0)">
+                                                        1
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="30">
+                                                        3.The Container No.:
+                                                    </td>
+                                                    <td>
+                                                        <span t-field="con.container_num_id.name"/>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <br></br>
+                                        <div style="width:230px; padding:18px; height: 60px; border:2px solid #000000; text-align:center; font-size:18px; font-weight:bold;margin-left:353px">
+                                            Original
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_structure"/>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

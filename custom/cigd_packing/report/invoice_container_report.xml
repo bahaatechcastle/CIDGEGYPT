@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_report_invoice_cidg" model="ir.actions.report">
+            <field name="name">Invoice Shipping</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">container_invoice_packing.report_invoice_container</field>
+            <field name="report_file">container_invoice_packing.report_invoice_container</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="print_report_name">'Print - %s' % (object.name).replace('/', '')</field>
+            <field name="binding_type">report</field>
+        </record>
+        <record id="id_report_invoice_container_paper" model="report.paperformat">
+            <field name="name">report Invoice container</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">165</field>
+            <field name="margin_bottom">50</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">155</field>
+            <field name="dpi">90</field>
+            <field name="report_ids"
+                   eval="[(6,0, [ref('container_invoice_packing.action_report_invoice_cidg')])]"/>
+
+        </record>
+        <template id="report_invoice_container">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <!--                    <t t-foreach="o.container_num" t-as="con">-->
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <div class="header">
+                                <table width="100%" height="10%">
+                                    <tr>
+                                        <td width="30%">
+                                            <img t-if="o.company_id.logo"
+                                                 t-att-src="image_data_uri(o.company_id.logo)"
+                                                 style="max-height: 70px;" alt="Logo"/>
+                                        </td>
+                                        <td width="70%"
+                                            style="font-size:18px;font-weight: bold;">
+                                            <br></br>
+                                            <span style="margin-top: 70px;">Invoice Container</span>
+                                            <span>
+                                                <t t-foreach="o.container_num" t-as="con">
+                                                    <span>(<span t-field="con.container_num_id.name"/>)
+                                                    </span>
+                                                </t>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br></br>
+                                <br></br>
+                                <table width="100%" height="30%">
+                                    <tr>
+                                        <td>
+                                            <div style="margin-right: 10px; border:1px solid; max-height:50%;min-height:50%; padding: 10px;"
+                                                 height="150px">
+                                                <div t-field="o.company_id.name"/>
+                                                <br></br>
+                                                <div t-field="o.company_id.street"/>
+                                                <div t-field="o.company_id.street2"/>
+                                                <div>
+                                                    <span t-field="o.company_id.city"/>
+                                                    ,
+                                                    <span t-field="o.company_id.state_id"/>
+                                                </div>
+                                                <div t-field="o.company_id.city"/>
+                                                <div t-field="o.company_id.country_id"/>
+                                                <br></br>
+                                                <div>
+                                                    phone :
+                                                    (<span t-field="o.company_id.zip"/>)
+                                                    <span t-field="o.company_id.phone"/>
+                                                </div>
+                                            </div>
+                                            <br></br>
+                                            <div style="border:1px solid; margin-right: 10px;max-height:50%; padding: 10px;"
+                                                 height="50%">
+                                                To:
+                                                <span>
+                                                    <div t-if="o.partner_shipping_id">
+                                                        <div t-field="o.partner_shipping_id"
+                                                             t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"
+                                                             name="purchase_shipping_address"/>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div style="font-size:14px;margin-left: 10px; padding: 10px;">
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">Invoice Port No.
+                                                        :
+                                                    </span>
+                                                    <span t-field="o.name"/>
+                                                </div>
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">PO No. :</span>
+                                                    <span t-field="o.po_num"/>
+                                                </div>
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">Quotation No. :
+                                                    </span>
+                                                    <span t-field="o.sale_order_num"/>
+                                                </div>
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">B/L No. :</span>
+                                                    <span t-field="o.bl_num"/>
+                                                </div>
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">Date :</span>
+                                                    <span t-field="o.invoice_date"/>
+                                                </div>
+                                            </div>
+                                            <div style="border:1px solid; margin-left: 10px; padding: 10px;">
+                                                <div style="font-size:18px;font-weight: bold;">BANK DETAILS</div>
+                                                <div t-field="o.bank_details.name"/>
+
+                                                <div>
+                                                    <span t-field="o.bank_details.street"/>
+                                                    ,
+                                                    <span t-field="o.bank_details.street2"/>
+                                                    ,
+                                                    <span t-field="o.bank_details.city"/>
+                                                    ,
+                                                    <span t-field="o.bank_details.state"/>
+                                                </div>
+                                                <div t-field="o.bank_details.city"/>
+                                                <div t-field="o.bank_details.country"/>
+                                                <br></br>
+                                                <div>
+                                                    phone :
+                                                    (<span t-field="o.bank_details.zip"/>)
+                                                    <span t-field="o.bank_details.phone"/>
+                                                </div>
+                                                <!--                                                <div>-->
+                                                <!--                                                    <div t-field="o.bank_details"-->
+                                                <!--                                                         t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;, &quot;email&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>-->
+                                                <!--                                                </div>-->
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">Swift Code:
+                                                    </span>
+                                                    <span t-field="o.bank_details.swift_code"/>
+                                                </div>
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">Account Number:
+                                                    </span>
+                                                    <span t-field="o.account_number.acc_number"/>
+                                                </div>
+                                                <div>
+                                                    <span style="font-size:16px;font-weight: bold;">Account Name:
+                                                    </span>
+                                                    <span t-field="o.company_id.name"/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br></br>
+                                <table width="100%" height="10%">
+                                    <tr>
+                                        <td width="25%"
+                                            style="border:3px solid; margin: 10px;max-height:50%; padding: 10px;text-align:center;font-weight: bold;font-size:14px;">
+                                            Customer PO
+                                        </td>
+                                        <td width="12%"
+                                            style="border:3px solid; margin: 10px;max-height:50%; padding: 10px;text-align:center;font-weight: bold;font-size:14px;">
+                                            Sales RE
+                                        </td>
+                                        <td width="12%"
+                                            style="border:3px solid; margin: 10px;max-height:50%; padding: 10px;text-align:center;font-weight: bold;font-size:14px;">
+                                            Ship VIA
+                                        </td>
+                                        <td width="12%"
+                                            style="border:3px solid;margin: 10px;max-height:50%; padding: 10px;text-align:center;font-weight: bold;font-size:14px; ">
+                                            Ship DATE
+                                        </td>
+                                        <td width="27%"
+                                            style="border:3px solid ;margin: 10px;max-height:50%; padding: 10px;text-align:center;font-weight: bold;font-size:14px;">
+                                            <span t-field="o.ship_date"/>
+                                        </td>
+                                        <td width="12%"
+                                            style="border:3px solid ;margin: 10px;max-height:50%; padding: 10px;text-align:center;font-weight: bold;font-size:14px;">
+                                            Curancy
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding: 10px;text-align:center;font-weight: bold;">
+                                            <span t-field="o.po_num"/>
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding: 10px;text-align:center;font-weight: bold;">
+                                            <span t-field="o.invoice_user_id"/>
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding: 10px;text-align:center;font-weight: bold;">
+                                            <span t-field="o.ship_via"/>
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding: 10px;text-align:center;font-weight: bold;"
+                                            colspan="2">
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding: 10px;text-align:center;font-weight: bold;">
+                                            <span t-field="o.account_number.currency_id"/>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br></br>
+                                <table width="100%" height="10%">
+                                    <tr>
+                                        <td style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:center;font-weight: bold;"
+                                            width="5%">
+                                            No
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:40px; padding-top: 10px;text-align:center;font-weight: bold;"
+                                            width="10%">
+                                            ITEM CODE
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:center;font-weight: bold;"
+                                            width="40%">
+                                            DESCRIPTION
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:center;font-weight: bold;"
+                                            width="10%">
+                                            UNIT
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:center;font-weight: bold;"
+                                            width="10%">
+                                            PRICE
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding: 10px;text-align:center;font-weight: bold;"
+                                            width="10%">
+                                            QTY m2
+                                        </td>
+                                        <td style="border:3px solid ;margin: 10px;height:20px; padding-top: 30px;text-align:center;font-weight: bold;"
+                                            width="15%">
+                                            EXTENDED
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="body">
+                                <br></br>
+                                <table width="100%">
+                                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                                        <!--                                        <p t-if="line.container_num.name== con.container_num_id.name">-->
+                                        <tr>
+                                            <td width="5%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
+                                                <t t-esc="line_index +1"/>
+                                            </td>
+                                            <td width="10%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
+                                                <span t-field="line.item_code"/>
+                                            </td>
+                                            <td width="40%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:center;font-weight: bold;">
+                                                <span t-field="line.name"/>
+                                            </td>
+                                            <td width="10%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
+                                                <span t-field="line.product_uom_id"/>
+                                            </td>
+                                            <td width="10%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
+                                                <span t-field="line.price_unit"/>
+                                            </td>
+                                            <td width="10%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
+                                                <span t-field="line.quantity"/>
+                                            </td>
+                                            <td width="15%"
+                                                style="border:3px solid ;margin: 10px;height:40px; padding: 10px;text-align:left;font-weight: bold;">
+                                                <span t-field="line.price_subtotal"/>
+                                            </td>
+                                        </tr>
+                                        <!--                                        </p>-->
+                                    </t>
+                                </table>
+                            </div>
+                            <div class="footer">
+                                <div class="row col-12">
+                                    <div class="col-6" align="left">
+                                        <span t-field="o.narration" style="font-weight: bold; font-size:16px;"/>
+                                    </div>
+                                    <div class="col-2" align="center">
+                                    </div>
+                                    <div class="col-4">
+                                        <table width="300px">
+                                            <tr style="margin: 100px;height:50px; padding: 100px;text-align:left;font-weight: bold;font-size:18px;">
+                                                <td style="margin: 10px; padding: 10px;">
+                                                    SAL AMT.
+                                                </td>
+                                                <td style="margin: 10px; padding: 10px;">
+                                                    <span t-field="o.amount_total"/>
+                                                </td>
+                                            </tr>
+                                            <tr style="margin: 100px;height:50px; padding: 100px;text-align:left;font-weight: bold;font-size:18px;">
+                                                <td style="margin: 10px; padding: 10px;">
+                                                    TOTAL AMT.
+                                                </td>
+                                                <td style="margin: 10px; padding: 10px;">
+                                                    <span t-field="o.amount_total"/>
+                                                </td>
+                                            </tr>
+                                            <tr style="margin: 100px;height:50px; padding: 100px;text-align:left;font-weight: bold;font-size:18px;">
+                                                <td style="margin: 10px; padding: 10px;">
+                                                    BALANCE DUE
+                                                </td>
+                                                <td style="margin: 10px; padding: 10px;">
+                                                    <span t-field="o.amount_residual"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--                                        <span>muhamed</span>-->
+                                    </div>
+                                </div>
+                                <span width="35%" align="left"
+                                      style="position: absolute;left: 650px;top:-10px;bottom:200px">
+                                </span>
+                                <span>
+                                </span>
+                                <span>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="text-center">
+                                                <span>Page</span>
+                                                <span class="page"/>
+                                                of
+                                                <span class="topage"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </t>
+                    <!--                    </t>-->
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

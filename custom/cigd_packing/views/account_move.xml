@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="view_notebook_shipping_dat_form" model="ir.ui.view">
+            <field name="model">account.move</field>
+            <field name="name">account.move.shipping.data</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook//page[@name='other_info']" position="after">
+                    <page string="Shipping Data" name="shipping_data" attrs="{'invisible': [('shipping', '!=', True)]}">
+                        <group string="Invoice Data">
+                            <field name="po_num"/>
+                            <field name="ship_date"/>
+                            <field name="ship_via"/>
+                        </group>
+                        <group string="Container Data">
+                            <field name="po_destination"/>
+                            <field name="terms_of_payment"/>
+                            <field name="the_prices_are"/>
+                            <field name="port_of_loading"/>
+                            <field name="container_num" widget="one2many">
+                                <tree editable="bottom">
+<!--                                    <field name="name"/>-->
+                                    <field name="container_num_id"/>
+                                    <field name="total_pallets"/>
+                                    <field name="total_bundle"/>
+                                    <field name="hs_code"/>
+                                    <field name="total_nw"/>
+                                    <field name="total_gw"/>
+                                    <field name="box_num" widget="many2many_tags"/>
+<!--                                    <field name="box_num_ra" widget="many2many_tags"/>-->
+                                    <field name="total_m2_con"/>
+<!--                                    <field name="total_box"/>-->
+<!--                                    <field name="total_amount"/>-->
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Bank Data">
+                            <field name="bl_num"/>
+                            <field name="account_number"/>
+                        </group>
+                    </page>
+                    <page string="Packing Data" name="packing_data" attrs="{'invisible': [('packing', '!=', True)]}">
+<!--                        <field name="box_no"/>-->
+                        <field name="box_num" widget="section_and_note_one2many" mode="tree" context="{'default_container_num': active_id}" nolabel="1" colspan="2">
+                            <tree editable="bottom">
+                                <!--                                <field name="name"/>-->
+                                <field name="box_num_id"/>
+                                <field name="container_num"/>
+                                <!--                                <field name="packing_id_box"/>-->
+                                <field name="sale_name"/>
+                                <!--                                <field name="product_ids" widget="many2many_tags"/>-->
+                                <field name="product_id"/>
+                                <field name="qty_box"/>
+                                <!--                                <field name="total_m2_box"/>-->
+                                <!--                                <field name="total_amount"/>-->
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="shipping"/>
+                    <field name="packing"/>
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='name']"
+                       position="before">
+                    <field name="container_num"/>
+                    <field name="item_code"/>
+                    <field name="lenght"/>
+                    <field name="width"/>
+                    <field name="thickness"/>
+                    <field name="no_of_tiles"/>
+                    <field name="shape"/>
+                    <field name="surface"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

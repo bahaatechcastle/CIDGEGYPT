@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <template id="report_manf" inherit_id="mrp.report_mrporder">
+            <xpath expr='//div[hasclass("page")]' position="inside">
+                <br/>
+                <div class="row mt32 mb32">
+                    <div class="col-2">
+                        <strong>Code:</strong>
+                        <br/>
+                        <span t-field="o.item_code"/>
+                    </div>
+                    <div class="col-2" >
+                        <strong>Lenght:</strong>
+                        <br/>
+                        <span t-field="o.lenght"/>
+                    </div>
+                    <div class="col-2">
+                        <strong>Width:</strong>
+                        <br/>
+                        <span t-field="o.width"/>
+                    </div>
+                    <div class="col-2" >
+                        <strong>Thickness:</strong>
+                        <br/>
+                        <span t-field="o.thickness"/>
+                    </div>
+                    <div class="col-2">
+                        <strong>Tiles:</strong>
+                        <br/>
+                        <span t-field="o.no_of_tiles"/>
+                    </div>
+                    <div class="col-2" >
+                        <strong>Surface:</strong>
+                        <br/>
+                        <span t-field="o.surface"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</odoo>

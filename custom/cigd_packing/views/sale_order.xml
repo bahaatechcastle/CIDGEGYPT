@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="view_edit_item_code" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="name">product.view.edit.</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']"
+                       position="after">
+                    <field name="container_num"/>
+                    <field name="item_code"/>
+                    <field name="lenght"/>
+                    <field name="width"/>
+                    <field name="thickness"/>
+                    <field name="no_of_tiles"/>
+                    <field name="shape"/>
+                    <field name="surface"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']"
+                       position="after">
+                    <field name="mo"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
