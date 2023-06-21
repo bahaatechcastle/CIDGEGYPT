@@ -15,4 +15,4 @@ class mo_new(models.Model):
     order_id = fields.Many2one('sale.order', string='Order', tracking=True)
     sale = fields.Char(string='Order', related='order_id.name', tracking=True)
     order_partner_id = fields.Many2one('res.partner', string='partner', tracking=True)
-    # code_partner = fields.Char(string='partner Code', related='order_partner_id.code', tracking=True)
+    code_partner = fields.Char(string='partner Code', related='order_partner_id.code', tracking=True)

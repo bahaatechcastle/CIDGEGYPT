@@ -15,7 +15,7 @@ class packing_new(models.Model):
     product_ids = fields.One2many('sale.order.line', 'box_num_in', string='product')
     num_box = fields.Many2one('box_num', string='Number Box')
     container_num = fields.Many2one('container_num')
-    # code_partner = fields.Char(string='partner Code', related='partner_id.code', tracking=True)
+    code_partner = fields.Char(string='partner Code', related='partner_id.code', tracking=True)
 
 
     @api.onchange('box')
