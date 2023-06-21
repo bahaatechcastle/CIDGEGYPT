@@ -5,8 +5,8 @@
             <field name="name">Invoice Shipping</field>
             <field name="model">account.move</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">container_invoice_packing.report_invoice_container</field>
-            <field name="report_file">container_invoice_packing.report_invoice_container</field>
+            <field name="report_name">cigd_packing.report_invoice_container</field>
+            <field name="report_file">cigd_packing.report_invoice_container</field>
             <field name="binding_model_id" ref="account.model_account_move"/>
             <field name="print_report_name">'Print - %s' % (object.name).replace('/', '')</field>
             <field name="binding_type">report</field>
@@ -26,7 +26,7 @@
             <field name="header_spacing">155</field>
             <field name="dpi">90</field>
             <field name="report_ids"
-                   eval="[(6,0, [ref('container_invoice_packing.action_report_invoice_cidg')])]"/>
+                   eval="[(6,0, [ref('cigd_packing.action_report_invoice_cidg')])]"/>
 
         </record>
         <template id="report_invoice_container">
