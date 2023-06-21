@@ -27,6 +27,8 @@ class ShippingData(models.Model):
     terms_of_payment = fields.Char(string='Terms of payment:', tracking=True)
     the_prices_are = fields.Char(string='The prices are:', tracking=True)
     port_of_loading = fields.Char(string='Port of Loading:', tracking=True)
+    ship_date = fields.Date(string='Ship Date', tracking=True)
+    ship_via = fields.Char(string='Ship VIA', tracking=True)
     # box = fields.Boolean(string='Box', tracking=True)
 
     @api.onchange('packing')
@@ -80,7 +82,7 @@ class ShippingData(models.Model):
     @api.depends()
     def _total_box_(self):
         for rec in self:
-            rec.box_no = int(len(rec.box_num.mapped('name')))
+            rec.box_no = int(len(rec.box_num.mapped('box_num_id')))
 
     @api.depends('invoice_origin', 'user_id', 'company_id')
     def _compute_sale_order_name(self):
