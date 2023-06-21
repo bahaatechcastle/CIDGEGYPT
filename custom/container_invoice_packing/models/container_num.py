@@ -5,17 +5,17 @@ class container(models.Model):
 
     _name = 'container_num'
 
-    name = fields.Char(string='name', tracking=True)
+    name = fields.Char(string='Name', tracking=True)
     container_num_id = fields.Many2one('container_num', string='Name', tracking=True)
     total_bundle = fields.Integer(string="T Bundle", tracking=True)
     total_pallets = fields.Integer(string="T Pallets", tracking=True)
-    # total_box = fields.Integer(string="T Box", tracking=True, compute='_total_box',)
+    total_box = fields.Integer(string="T Box", tracking=True, compute='_total_box',)
     total_gw = fields.Float(string="T (GW)", tracking=True)
     total_nw = fields.Float(string="T (NW)", tracking=True)
     hs_code = fields.Char(string='HS Code', tracking=True)
     my_account_move_id_co = fields.Many2one('account.move', tracking=True)
     box_num = fields.One2many('box_num', 'container_num', string='Box No.', tracking=True, compute='_on_change_box_no')
-    # total_m2_con = fields.Float(string='Total', compute='_total_m2_', tracking=True)
+    total_m2_con = fields.Float(string='Total', compute='_total_m2_', tracking=True)
     invoice_name = fields.Char(string='Invoice Name', releted='my_account_move_id_co.name', tracking=True)
     # total_amount = fields.Float(string='Total Amount', compute='_total_amount_', tracking=True)
 
@@ -24,23 +24,33 @@ class container(models.Model):
     def _on_change_box_no(self):
         for rec in self:
             rec.box_num = rec.env['box_num'].search(
-                [('container_num', '=', rec.container_num_id._origin.id), ('my_account_move_id', '=', rec.my_account_move_id_co._origin.id)])
-            print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,',rec.container_num_id._origin.id)
-            print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,',rec.box_num)
+                [('container_num', '=', rec.container_num_id.id), ('my_account_move_id', '=', rec.my_account_move_id_co._origin.id)])
 
 
+
+
+    @api.constrains('container_num_id')
+    def _total_m2_(self):
+        for rec in self:
+            # print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,', rec.container_num_id.id)
+            # print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,', rec.my_account_move_id_co._origin.id)
+            # print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,', rec.box_num)
+            total = []
             for r in self.box_num:
-                print('lllllllllllllllllllllllllllllllll',r._origin.name)
-                print('lllllllllllllllllllllllllllllllll',r._origin.container_num._origin.name)
+                if rec.container_num_id._origin.id == r._origin.container_num._origin.id:
+                    # print('lllllllllllllllllllllllllllllllll', r._origin.qty_box)
+                    total.append(float(r._origin.qty_box))
+                    # print('lllllllllllllllllllllllllllllllll', r._origin.container_num._origin.name)
+                    # print('ddddddddddddddddddddddddddddddddddddddddddddddddd',total)
+            rec.total_m2_con = sum(total)
+            # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',rec.total_m2_con)
 
-    # def _total_m2_(self):
-    #     for rec in self:
-    #         rec.total_m2_con = sum(rec.box_num.mapped('total_m2_box'))
-    #
-    # @api.depends()
-    # def _total_box(self):
-    #     for rec in self:
-    #         rec.total_box = len(rec.box_num.mapped('name'))
+
+
+    @api.depends()
+    def _total_box(self):
+        for rec in self:
+            rec.total_box = len(rec.box_num.mapped('box_num_id'))
 
     # @api.depends()
     # def _total_amount_(self):

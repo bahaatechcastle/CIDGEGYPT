@@ -14,7 +14,9 @@
                     <field name="no_of_tiles"/>
                     <field name="shape"/>
                     <field name="surface"/>
-                    <field name="order_id"/>
+                    <field name="sale"/>
+<!--                    <field name="order_partner_id"/>-->
+<!--                    <field name="code_partner"/>-->
                 </xpath>
             </field>
         </record>

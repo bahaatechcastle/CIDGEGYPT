@@ -52,29 +52,14 @@
                             </tree>
                         </field>
                     </page>
-<!--                    <page string="Box Number Invoice" name="packing_data_invoice"-->
-<!--                          attrs="{'invisible': [('box', '!=', True)]}">-->
-<!--                        &lt;!&ndash;                        <field name="box_no"/>&ndash;&gt;-->
-<!--                        <field name="pa_in_ids" widget="section_and_note_one2many" mode="tree" nolabel="1" colspan="2">-->
-<!--                            &lt;!&ndash;                               context="{'default_container_num': active_id}">&ndash;&gt;-->
-<!--                            <tree editable="bottom">-->
-<!--                                &lt;!&ndash;                                <field name="name"/>&ndash;&gt;-->
-<!--                                <field name="num_box"/>-->
-<!--                                <field name="container_num"/>-->
-<!--                                &lt;!&ndash;                                <field name="packing_id_box"/>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                <field name="sale_name"/>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                <field name="product_ids" widget="many2many_tags"/>&ndash;&gt;-->
-<!--                                <field name="product_ids" widget="many2many_tags"/>-->
-<!--                                &lt;!&ndash;                                <field name="qty_box"/>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                <field name="total_m2_box"/>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                <field name="total_amount"/>&ndash;&gt;-->
-<!--                            </tree>-->
-<!--                        </field>-->
-<!--                    </page>-->
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="box"/>
                 </xpath>
+<!--                <xpath expr="//sheet/group/group/field[@name='partner_id']" position="replace">-->
+<!--                    <field name="partner_id" nolabel="1" readonly="1" invisible="1"/>-->
+<!--                    <field name="code_partner" nolabel="1" readonly="1"/>-->
+<!--                </xpath>-->
             </field>
         </record>
     </data>
