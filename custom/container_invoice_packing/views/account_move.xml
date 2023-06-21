@@ -9,8 +9,8 @@
                     <page string="Shipping Data" name="shipping_data" attrs="{'invisible': [('shipping', '!=', True)]}">
                         <group string="Invoice Data">
                             <field name="po_num"/>
-                            <field name="ship_date"/>
-                            <field name="ship_via"/>
+<!--                            <field name="Container_no"/>-->
+<!--                            <field name="total_m2"/>-->
                         </group>
                         <group string="Container Data">
                             <field name="po_destination"/>
@@ -28,7 +28,7 @@
                                     <field name="total_gw"/>
                                     <field name="box_num" widget="many2many_tags"/>
 <!--                                    <field name="box_num_ra" widget="many2many_tags"/>-->
-                                    <field name="total_m2_con"/>
+<!--                                    <field name="total_m2_con"/>-->
 <!--                                    <field name="total_box"/>-->
 <!--                                    <field name="total_amount"/>-->
                                 </tree>
