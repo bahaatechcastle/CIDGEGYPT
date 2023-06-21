@@ -68,6 +68,7 @@ class sale(models.Model):
             for line in x:
                 y = {'item_code': line.item_code,
                      'product_id': line.product_id.id,
+                     'order_partner_id': line.order_partner_id.id,
                      'order_id': line.order_id.id,
                      'lenght': line.lenght,
                      'width': line.width,
