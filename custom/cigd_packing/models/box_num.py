@@ -17,7 +17,8 @@ class box_num(models.Model):
     packing_id_box = fields.Many2one('stock.picking', tracking=True)
     packing_id_box_invoice = fields.Many2one('stock.picking', tracking=True)
     sale_name = fields.Char(related='packing_id_box.origin', tracking=True)
-    qty_box = fields.Char(string='Qty for Box', tracking=True)
+    qty_box = fields.Char(string='Qty for Box', tracking=True, compute='_total_area_')
+    no_of_tiles = fields.Float(string='No. Of Tiles', tracking=True)
     dis_product = fields.Text(string='Dis Product', related='product_id.name')
 
 
@@ -31,6 +32,11 @@ class box_num(models.Model):
     def _total_amount_(self):
         for rec in self:
             rec.total_amount = sum(rec.product_ids.mapped('price_subtotal'))
+
+    @api.onchange('no_of_tiles')
+    def _total_area_(self):
+        for rec in self:
+            rec.qty_box = ((rec.product_id.width)/1000) * ((rec.product_id.lenght)/1000) * rec.no_of_tiles
 
 
 

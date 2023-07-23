@@ -29,6 +29,7 @@ class ShippingData(models.Model):
     port_of_loading = fields.Char(string='Port of Loading:', tracking=True)
     ship_date = fields.Date(string='Ship Date', tracking=True)
     ship_via = fields.Char(string='Ship VIA', tracking=True)
+    hs_code = fields.Char(string='HS Code', tracking=True)
     # box = fields.Boolean(string='Box', tracking=True)
 
     @api.onchange('packing')

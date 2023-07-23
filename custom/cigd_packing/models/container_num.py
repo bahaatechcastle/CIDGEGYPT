@@ -17,6 +17,7 @@ class container(models.Model):
     box_num = fields.One2many('box_num', 'container_num', string='Box No.', tracking=True, compute='_on_change_box_no')
     total_m2_con = fields.Float(string='Total', compute='_total_m2_', tracking=True)
     invoice_name = fields.Char(string='Invoice Name', releted='my_account_move_id_co.name', tracking=True)
+    no_of_tiles_con = fields.Float(string='No. Of Tiles', tracking=True)
     # total_amount = fields.Float(string='Total Amount', compute='_total_amount_', tracking=True)
 
 
@@ -35,14 +36,18 @@ class container(models.Model):
             # print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,', rec.container_num_id.id)
             # print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,', rec.my_account_move_id_co._origin.id)
             # print('kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk,', rec.box_num)
-            total = []
+            total_m2 = []
+            total_tiles = []
             for r in self.box_num:
                 if rec.container_num_id._origin.id == r._origin.container_num._origin.id:
                     # print('lllllllllllllllllllllllllllllllll', r._origin.qty_box)
-                    total.append(float(r._origin.qty_box))
+                    total_m2.append(float(r._origin.qty_box))
+                    total_tiles.append(float(r._origin.no_of_tiles))
                     # print('lllllllllllllllllllllllllllllllll', r._origin.container_num._origin.name)
                     # print('ddddddddddddddddddddddddddddddddddddddddddddddddd',total)
-            rec.total_m2_con = sum(total)
+                    print('ddddddddddddddddddddddddddddddddddddddddddddddddd',total_tiles)
+            rec.total_m2_con = sum(total_m2)
+            rec.no_of_tiles_con = sum(total_tiles)
             # print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',rec.total_m2_con)
 
 

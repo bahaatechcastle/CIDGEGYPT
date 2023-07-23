@@ -17,17 +17,19 @@
                             <field name="terms_of_payment"/>
                             <field name="the_prices_are"/>
                             <field name="port_of_loading"/>
+                            <field name="hs_code"/>
                             <field name="container_num" widget="one2many">
                                 <tree editable="bottom">
 <!--                                    <field name="name"/>-->
                                     <field name="container_num_id"/>
                                     <field name="total_pallets"/>
                                     <field name="total_bundle"/>
-                                    <field name="hs_code"/>
+<!--                                    <field name="hs_code"/>-->
                                     <field name="total_nw"/>
                                     <field name="total_gw"/>
                                     <field name="box_num" widget="many2many_tags"/>
 <!--                                    <field name="box_num_ra" widget="many2many_tags"/>-->
+                                    <field name="no_of_tiles_con"/>
                                     <field name="total_m2_con"/>
 <!--                                    <field name="total_box"/>-->
 <!--                                    <field name="total_amount"/>-->
@@ -50,6 +52,7 @@
                                 <field name="sale_name"/>
                                 <!--                                <field name="product_ids" widget="many2many_tags"/>-->
                                 <field name="product_id"/>
+                                <field name="no_of_tiles"/>
                                 <field name="qty_box"/>
                                 <!--                                <field name="total_m2_box"/>-->
                                 <!--                                <field name="total_amount"/>-->

@@ -86,10 +86,10 @@
                                         <span t-esc="ml.product_id.thickness"/>
                                     </td>
                                     <td>
-                                        <span t-esc="ml.product_id.no_of_tiles"/>
+                                        <span t-esc="ml.no_of_tiles"/>
                                     </td>
                                     <td>
-                                        <span t-esc="ml.product_id.product_uom_qty"/>
+                                        <span t-esc="ml.qty_box"/>
                                     </td>
                                 </tr>
                             </t>

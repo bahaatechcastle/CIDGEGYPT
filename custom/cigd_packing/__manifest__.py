@@ -34,6 +34,7 @@
         'report/packing_container_report.xml',
         'views/inherit_packing_report.xml',
         'views/inherit_manf_report.xml',
+        'views/inherit_order_report.xml',
         'views/account_move.xml',
         'views/res_bank.xml',
         'views/res_partner.xml',
