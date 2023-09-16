@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_container_num,container_invoice_packing.container_num,model_container_num,base.group_user,1,1,1,1
 access_box_num,container_invoice_packing.box_num,model_box_num,base.group_user,1,1,1,1
+access_shape_name,container_invoice_packing.shape_name,model_shape_name,,1,1,1,1
