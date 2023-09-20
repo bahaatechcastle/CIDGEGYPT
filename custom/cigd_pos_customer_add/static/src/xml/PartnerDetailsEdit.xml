@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Add image and tags field-->
+<templates id="template" xml:space="preserve">
+    <t t-name="PartnerDetailsEdit" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('partner-details-right')]" position="inside">
+            <div class="partner-detail">
+            <span class="label">Email Parent</span>
+                <input class="detail" name="email_parent"
+                       t-on-change="captureChange" t-att-value="props.partner.email_parent || ''"
+                       placeholder="Email Parent"/>
+            </div>
+            <div class="partner-detail">
+            <span class="label">Phone Whatsapp</span>
+                <input class="detail" name="phone_whatsapp"
+                       t-on-change="captureChange" t-att-value="props.partner.phone_whatsapp || ''"
+                       placeholder="Phone Whatsapp"/>
+            </div>
+            <div class="partner-detail">
+            <span class="label">Phone 2</span>
+                <input class="detail" name="phone_2"
+                       t-on-change="captureChange" t-att-value="props.partner.phone_2 || ''"
+                       placeholder="Phone 2"/>
+            </div>
+            <div class="partner-detail">
+            <span class="label">Profession</span>
+                <input class="detail" name="profession"
+                       t-on-change="captureChange" t-att-value="props.partner.profession || ''"
+                       placeholder="Profession"/>
+            </div>
+            <div class="partner-detail">
+            <span class="label">Note</span>
+                <input class="detail" name="note"
+                       t-on-change="captureChange" t-att-value="props.partner.note || ''"
+                       placeholder="Note"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[hasclass('partner-details-left')]" position="inside">
+            <div class="partner-detail">
+                <span class="label">Parent Name</span>
+                <input class="detail" name="parent_name"
+                       t-on-change="captureChange" t-att-value="props.partner.parent_name || ''"
+                       placeholder="Parent Name"/>
+            </div>
+            <div class="partner-detail">
+                <span class="label">Source</span>
+                <input class="detail" name="source"
+                       t-on-change="captureChange" t-att-value="props.partner.source || ''"
+                       placeholder="Source"/>
+            </div>
+
+<!--            <div class="partner-detail">-->
+<!--                <span class="label">Parent Name</span>-->
+<!--                <select class="detail" name="parent_name_id" t-on-change="captureChange">-->
+<!--                    <option value="">None</option>-->
+<!--                    <t t-foreach="env.pos.partners" t-as="partners" t-key="partners.id">-->
+<!--                        <option t-att-value="partners.id">-->
+<!--                            <t t-esc="partners.name" />-->
+<!--                        </option>-->
+<!--                    </t>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <div class="partner-detail">-->
+<!--                <span class="label">Source</span>-->
+<!--                <select class="detail" name="source_id" t-model="changes.source_id" t-on-change="captureChange">-->
+<!--                    <option value="">None</option>-->
+<!--&lt;!&ndash;                    <t t-foreach="env.pos.countries" t-as="country" t-key="country.id">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <option t-att-value="country.id">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <t t-esc="country.name" />&ndash;&gt;-->
+<!--&lt;!&ndash;                        </option>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </t>&ndash;&gt;-->
+<!--                </select>-->
+<!--            </div>-->
+        </xpath>
+    </t>
+</templates>
