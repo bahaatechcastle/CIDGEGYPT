@@ -12,7 +12,8 @@
                         context="{'default_partner_id': active_id}"
                         attrs="{'invisible': [('pos_order_count', '=', 0)]}"
                         icon="fa-bar-chart">
-                    <field string="Visit POS" name="pos_order_count" widget="statinfo"/>
+<!--                    <field string="Visit POS" name="pos_order_count" widget="statinfo"/>-->
+                    Visit POS
                 </button>
             </div>
         </field>

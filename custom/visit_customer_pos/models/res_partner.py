@@ -20,4 +20,5 @@ class ResPartner(models.Model):
             'res_model': 'visit.pos.date',
             'view_mode': 'form',
             'target': 'new',
+            'context': {'create': False, 'delete': False, 'edit': False},
         }

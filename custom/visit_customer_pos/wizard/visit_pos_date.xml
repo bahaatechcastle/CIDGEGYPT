@@ -10,17 +10,11 @@
                     <sheet>
                         <group>
                             <group>
-                                <!--                                <field name="pos_category_ids" widget="many2many_tags"/>-->
                                 <field name="start_data"/>
-
                             </group>
                             <group>
                                 <field name="end_data"/>
                             </group>
-                        </group>
-                        <group>
-                            <!--                            <field name="pos_category_ids" mode="tree" colspan="2" nolabel="1"/>-->
-                            <!--                            <field name="order_line_ids" mode="tree" colspan="2" nolabel="1"/>-->
                         </group>
                         <footer>
                             <button name="action_open_visit_pos_data" string="Confirm" type="object" class="btn-primary"
