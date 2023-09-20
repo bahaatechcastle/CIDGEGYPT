@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="pos_category_orders_form_inherit" model="ir.ui.view">
+            <field name="name">pos.category.orders.form</field>
+            <field name="model">pos.category</field>
+            <field name="inherit_id" ref="point_of_sale.product_pos_category_form_view"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="after">
+                    <notebook>
+                        <page string="Orders" name="orders">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="total_price" widget="monetary"/>
+                            <field name="order_line_ids"/>
+                            <field name="currency_id" invisible="1"/>
+                        </page>
+                    </notebook>
+                </xpath>
+                <!--                <xpath expr="//field[@name='example_field']" position="attributes">-->
+                <!--                    <attribute name="invisible">True</attribute>-->
+                <!--                </xpath>-->
+            </field>
+        </record>
+        <record id="pos_category_orders_tree_inherit" model="ir.ui.view">
+            <field name="name">pos.category.orders.tree</field>
+            <field name="model">pos.category</field>
+            <field name="inherit_id" ref="point_of_sale.product_pos_category_tree_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="total_discounts" sum="Total" widget="monetary"/>
+                    <field name="total_without_tax" sum="Total" widget="monetary"/>
+                    <field name="total_tax" sum="Total" widget="monetary"/>
+                    <field name="total_price" sum="Total" widget="monetary"/>
+                    <field name="currency_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

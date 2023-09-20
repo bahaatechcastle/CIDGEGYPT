@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="pos_salecategory_form_view" model="ir.ui.view">
+            <field name="name">pos_salecategory.form</field>
+            <field name="model">pos_sale_category_report</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                    <sheet>
+                        <group>
+                            <group>
+                                <!--                                <field name="pos_category_ids" widget="many2many_tags"/>-->
+                                <field name="start_data"/>
+
+                            </group>
+                            <group>
+                                <field name="end_data"/>
+                            </group>
+                        </group>
+                        <group>
+                            <!--                            <field name="pos_category_ids" mode="tree" colspan="2" nolabel="1"/>-->
+                            <!--                            <field name="order_line_ids" mode="tree" colspan="2" nolabel="1"/>-->
+                        </group>
+                        <footer>
+                            <button name="generate_report" string="Confirm" type="object" class="btn-primary"
+                                    data-hotkey="q"/>
+                            <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="pos_salecategory_act_window" model="ir.actions.act_window">
+            <field name="name">category Reports</field>
+            <field name="res_model">pos_sale_category_report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem name="category" id="pos_salecategory_menu" parent="point_of_sale.menu_point_rep"
+                  action="pos_salecategory_act_window" sequence="4"/>
+
+    </data>
+</odoo>

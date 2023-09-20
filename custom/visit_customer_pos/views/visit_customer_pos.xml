@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record id="visit_customer_pos_view_form" model="ir.ui.view">
+            <field name="name">visit.customer.pos.view.form</field>
+            <field name="model">visit.customer.pos</field>
+            <field name="arch" type="xml">
+                <form string="Visit CustomerPOS Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="customer"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                            <group>
+                                <field name="count_pos_orders"/>
+                                <field name="count_visit"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="pos_order" string="POS Order">
+                                <group>
+                                    <field name="pos_order_ids" mode="tree" colspan="2" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="visit_customer_pos_view_tree" model="ir.ui.view">
+            <field name="name">visit.customer.pos.view.tree</field>
+            <field name="model">visit.customer.pos</field>
+            <field name="arch" type="xml">
+                <tree string="Visit CustomerPOS Tree">
+                    <field name="customer"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="count_pos_orders"/>
+                    <field name="count_visit"/>
+                </tree>
+            </field>
+        </record>
+        <record id="visit_customer_pos_action" model="ir.actions.act_window">
+            <field name="name">visit.customer.pos.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">visit.customer.pos</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- This Menu Item Must have a parent -->
+<!--        <menuitem name="visit Customer" id="visit_customer_pos_menu" parent="point_of_sale.menu_point_rep"-->
+<!--                  action="visit_customer_pos_action" sequence="5"/>-->
+    </data>
+</odoo>

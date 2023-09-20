@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_visit_customer_pos,visit.customer.pos.visit.customer.pos,model_visit_customer_pos,base.group_user,1,1,1,1
+access_visit_pos_date,visit.pos.date.visit.pos.date,model_visit_pos_date,base.group_user,1,1,1,1

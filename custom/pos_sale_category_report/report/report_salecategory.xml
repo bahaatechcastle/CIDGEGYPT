@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <template id="report_saledetails_category">
+            <t t-call="web.basic_layout">
+
+                <style>
+
+
+                    table, tr, th{
+                    border:1px solid #000000;
+                    vertical-align: middle;
+                    text-align:center;
+                    }
+
+                    table, tr, td{
+                    border:1px solid #000000;
+                    text-align:center;
+                    }
+
+                </style>
+                <div class="page">
+                    <div class="text-center">
+                        <br/>
+                        <br/>
+                        <h2>Sales Details</h2>
+
+                        <t t-if="docs[0].start_date and docs[0].end_date">
+                            <strong>
+                                <t t-esc="docs[0].start_date" t-options="{'widget': 'date'}"/>
+                                -
+                                <t t-esc="docs[0].end_date" t-options="{'widget': 'date'}"/>
+                            </strong>
+                        </t>
+                    </div>
+                    <br/>
+                    <br/>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>Discounts</th>
+                                <th>total WithoutTax</th>
+                                <th>total Tax</th>
+                                <th>total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+                                <tr>
+                                    <td>
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.total_discounts"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.total_without_tax"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.total_tax"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.total_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

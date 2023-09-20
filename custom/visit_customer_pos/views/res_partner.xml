@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">res.partner.pos.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="priority" eval="4"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button" type="object" name="action_open_visit_pos_data"
+                        groups="point_of_sale.group_pos_user"
+                        context="{'default_partner_id': active_id}"
+                        attrs="{'invisible': [('pos_order_count', '=', 0)]}"
+                        icon="fa-bar-chart">
+                    <field string="Visit POS" name="pos_order_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+        <template id="report_visit_pos">
+            <t t-call="web.basic_layout">
+
+                <style>
+
+
+                    table, tr, th{
+                    border:1px solid #000000;
+                    vertical-align: middle;
+                    text-align:center;
+                    }
+
+                    table, tr, td{
+                    border:1px solid #000000;
+                    text-align:center;
+                    }
+
+                </style>
+                <div class="page">
+                    <div class="text-center">
+                        <br/>
+                        <br/>
+                        <h2>Visits pos Details</h2>
+                        <t t-if="docs[0].start_date and docs[0].end_date">
+                            <strong>
+                                <t t-esc="docs[0].start_date" t-options="{'widget': 'date'}"/>
+                                -
+                                <t t-esc="docs[0].end_date" t-options="{'widget': 'date'}"/>
+                            </strong>
+                        </t>
+                        <br/>
+                        <br/>
+                        <t>
+                            <strong>
+                                <t>Name :-</t>
+                                <t t-esc="docs[0].customer.name"/>
+                            </strong>
+                        </t>
+                        <br/>
+                        <br/>
+                        <t>
+                            <strong>
+                                <t>Visits :-</t>
+                                <t t-esc="docs[0].count_visit"/>
+                                <t>-</t>
+                                <t>Orders :-</t>
+                                <t t-esc="docs[0].count_pos_orders"/>
+                            </strong>
+                        </t>
+                    </div>
+                    <br/>
+                    <br/>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Session</th>
+                                <th>DATA</th>
+                                <th>Order Name</th>
+                                <th>Time</th>
+                                <th>total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="o">
+                                <t t-foreach="o.pos_order_ids" t-as="order">
+                                    <tr>
+                                        <td>
+                                            <span t-field="order.session_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="order.date_order" t-options="{'widget': 'date'}"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="order.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="order.date_order" t-options="{'widget': 'datatime'}"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="order.amount_total"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
