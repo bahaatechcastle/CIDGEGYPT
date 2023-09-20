@@ -14,5 +14,6 @@ class PosSession(models.Model):
         result['search_params']['fields'].append('profession')
         result['search_params']['fields'].append('note')
         result['search_params']['fields'].append('parent_name')
-        result['search_params']['fields'].append('source')
+        # result['search_params']['fields'].append('source')
+        result['search_params']['fields'].append('birthday_kid')
         return result
