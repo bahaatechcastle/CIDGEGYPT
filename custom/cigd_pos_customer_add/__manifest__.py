@@ -10,7 +10,6 @@
     'depends': [
         'base',
         'point_of_sale',
-        'utm'
     ],
     'data': [
         'views/res_partner.xml',

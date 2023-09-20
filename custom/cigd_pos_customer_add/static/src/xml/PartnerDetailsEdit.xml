@@ -42,17 +42,11 @@
                        placeholder="Parent Name"/>
             </div>
             <div class="partner-detail">
-                <span class="label">Birthdate</span>
-                <input class="detail" name="birthday_kid"
-                       t-on-change="captureChange" t-att-value="props.partner.birthday_kid || ''"
-                       placeholder="Birthdate"/>
+                <span class="label">Source</span>
+                <input class="detail" name="source"
+                       t-on-change="captureChange" t-att-value="props.partner.source || ''"
+                       placeholder="Source"/>
             </div>
-<!--            <div class="partner-detail">-->
-<!--                <span class="label">Source</span>-->
-<!--                <input class="detail" name="source"-->
-<!--                       t-on-change="captureChange" t-att-value="props.partner.source || ''"-->
-<!--                       placeholder="Source"/>-->
-<!--            </div>-->
 
 <!--            <div class="partner-detail">-->
 <!--                <span class="label">Parent Name</span>-->
