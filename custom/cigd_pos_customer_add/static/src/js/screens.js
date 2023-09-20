@@ -18,8 +18,7 @@ odoo.define('cigd_pos_customer_add.screens', function (require) {
                     var parent_name_id = $('.phone_2').val();
                     var parent_name_id = $('.profession').val();
                     var parent_name_id = $('.note').val();
-//                    var parent_name_id = $('.source').val();
-                    var parent_name_id = $('.birthday_kid').val();
+                    var parent_name_id = $('.source').val();
                     let partnerId = await this.rpc({
                         model: 'res.partner',
                         method: 'create_from_ui',
