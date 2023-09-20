@@ -6,15 +6,16 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//form//sheet/group//group//field[@name='vat']" position="after">
-                    <field name="email_parent" widget="email"/>
+                    <field name="parent_name" readonly="0"/>
                     <field name="phone_whatsapp" widget="phone"/>
                     <field name="phone_2" widget="phone"/>
+                    <field name="email_parent" widget="email"/>
+                    <field name="source_id"/>
                     <field name="profession"/>
+                    <field name="birthday_kid"/>
                     <field name="note"/>
-                    <field name="parent_name" readonly="0"/>
-                    <field name="source"/>
-<!--                    <field name="id"/>-->
-<!--                    <field name="create_date"/>-->
+                    <!--                    <field name="id"/>-->
+                    <!--                    <field name="create_date"/>-->
                 </xpath>
             </field>
         </record>
