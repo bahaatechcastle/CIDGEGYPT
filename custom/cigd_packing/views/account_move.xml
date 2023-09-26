@@ -18,6 +18,12 @@
                             <field name="the_prices_are"/>
                             <field name="port_of_loading"/>
                             <field name="hs_code"/>
+                            <field name="total_bundle"/>
+                            <field name="total_pallets"/>
+                            <field name="total_box"/>
+                            <field name="total_gw"/>
+                            <field name="total_nw"/>
+                            <field name="total_m2"/>
                             <field name="container_num" widget="one2many">
                                 <tree editable="bottom">
 <!--                                    <field name="name"/>-->

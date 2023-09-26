@@ -139,7 +139,7 @@
                                                         Material
                                                     </td>
                                                     <td style="padding:10px; text-align:center; width: 10%; font-size:14px">
-                                                        Shape
+                                                        Unit
                                                     </td>
                                                     <td style="padding:10px; text-align:center; width: 13%; font-size:14px">
                                                         Surface
@@ -213,60 +213,60 @@
                                     </div>
                                     <br></br>
                                     <div>
-                                        <t t-foreach="o.container_num" t-as="con">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <div style="text-align:center; color:rgb(255, 0, 0); font-weight: bold;">
-                                                        Containers
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div style="text-align:center; color:rgb(255, 0, 0); font-weight: bold;">
+                                                    Containers
+                                                    <t t-foreach="o.container_num" t-as="con">
                                                         <span style="font-weight: bold; color:black"
-                                                              t-field="con.container_num_id.name"/>
-                                                    </div>
-                                                    <br/>
-                                                    <div>
-                                                        1.The Quantity (m2):-
+                                                              t-field="con.container_num_id.name"/>/
+                                                    </t>
+                                                </div>
+                                                <br/>
+                                                <div>
+                                                    1.The Quantity (m2):-
+                                                    <span style="font-weight: bold; color:black"
+                                                          t-field="o.total_m2"/>
+                                                    m2
+                                                </div>
+                                                <br/>
+                                                <div>
+                                                    <span>
+                                                        2.Number Of Boxs :-
+                                                        <span style="font-weight: bold;" t-field="o.total_box"/>
+                                                    </span>
+                                                    <span>
+                                                           Number Of Pallets :-
+                                                        <span style="font-weight: bold;"
+                                                              t-field="o.total_pallets"/>
+                                                    </span>
+                                                    <span>
+                                                           Number Of Bundles :-
+                                                        <span style="font-weight: bold;"
+                                                              t-field="o.total_bundle"/>
+                                                    </span>
+                                                </div>
+                                                <br/>
+                                                <div>
+                                                    3.HS Code :-
+                                                    <span style="font-weight: bold; color:black"
+                                                          t-field="o.hs_code"/>
+                                                </div>
+                                                <br/>
+                                                <div>
+                                                    <span>
+                                                        4.Net Weight (KG) :-
                                                         <span style="font-weight: bold; color:black"
-                                                              t-field="con.total_m2_con"/>
-                                                        m2
-                                                    </div>
-                                                    <br/>
-                                                    <div>
-                                                        <span>
-                                                            2.Number Of Boxs :-
-                                                            <span style="font-weight: bold;" t-field="con.total_box"/>
-                                                        </span>
-                                                        <span>
-                                                               Number Of Pallets :-
-                                                            <span style="font-weight: bold;"
-                                                                  t-field="con.total_pallets"/>
-                                                        </span>
-                                                        <span>
-                                                               Number Of Bundles :-
-                                                            <span style="font-weight: bold;"
-                                                                  t-field="con.total_bundle"/>
-                                                        </span>
-                                                    </div>
-                                                    <br/>
-                                                    <div>
-                                                        3.HS Code :-
-                                                        <span style="font-weight: bold; color:black"
-                                                              t-field="o.hs_code"/>
-                                                    </div>
-                                                    <br/>
-                                                    <div>
-                                                        <span>
-                                                            4.Net Weight (KG) :-
-                                                            <span style="font-weight: bold; color:black"
-                                                                  t-field="con.total_nw"/>
-                                                        </span>
-                                                        <span>
-                                                               Gross Weight(KG) :-
-                                                            <span style="font-weight: bold;"
-                                                                  t-field="con.total_gw"/>
-                                                        </span>
-                                                    </div>
+                                                              t-field="o.total_nw"/>
+                                                    </span>
+                                                    <span>
+                                                           Gross Weight(KG) :-
+                                                        <span style="font-weight: bold;"
+                                                              t-field="o.total_gw"/>
+                                                    </span>
                                                 </div>
                                             </div>
-                                        </t>
+                                        </div>
                                     </div>
                                     <br></br>
                                     <div class="row">

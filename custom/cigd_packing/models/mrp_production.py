@@ -11,7 +11,7 @@ class mo_new(models.Model):
     no_of_tiles = fields.Float(string='No. Of Tiles', tracking=True)
     container_num = fields.Many2one('container_num', string='Container Num', tracking=True)
     # shape = fields.Char(string='Shape', tracking=True)
-    shape = fields.Many2one(comodel_name='shape.name', string='Shape', required=False)
+    shape = fields.Many2one(comodel_name='shape.name', string='Unit', required=False)
     surface = fields.Char(string='Surface', tracking=True)
     order_id = fields.Many2one('sale.order', string='Order', tracking=True)
     sale = fields.Char(string='Order', related='order_id.name', tracking=True)
