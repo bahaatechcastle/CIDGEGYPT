@@ -91,7 +91,7 @@
                         type="date"
                         t-on-change="captureChange"
                         t-model="changes.birthday_kid"
-                        placeholder="Wright The Birthday"
+                        placeholder="Write The Birthday"
                 />
             </div>
             <div class="partner-detail partner-detail-pos-comment">
@@ -101,7 +101,7 @@
                         name="age"
                         t-on-change="captureChange"
                         t-model="changes.age"
-                        placeholder="Wright The Age"
+                        placeholder="Write The Age"
                 />
             </div>
         </xpath>
