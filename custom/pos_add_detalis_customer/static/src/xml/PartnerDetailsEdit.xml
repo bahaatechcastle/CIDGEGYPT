@@ -12,6 +12,16 @@
         <xpath expr="//div[hasclass('partner-details-right')]/div[5]" position="replace"/>
         <xpath expr="//div[hasclass('partner-details-right')]" position="inside">
             <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Marketing Chanel</span>
+                <input
+                        class="detail"
+                        name="source"
+                        t-on-change="captureChange"
+                        t-model="changes.source"
+                        placeholder="Source"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
                 <span class="label">Email Parent</span>
                 <input
                         class="detail"
@@ -67,9 +77,9 @@
                 <span class="label">Parent Name</span>
                 <input
                         class="detail"
-                        name="parent_name"
+                        name="father_name"
                         t-on-change="captureChange"
-                        t-model="changes.parent_name"
+                        t-model="changes.father_name"
                         placeholder="Parent Name"
                 />
             </div>
@@ -92,16 +102,6 @@
                         t-on-change="captureChange"
                         t-model="changes.age"
                         placeholder="Wright The Age"
-                />
-            </div>
-            <div class="partner-detail partner-detail-pos-comment">
-                <span class="label">Source</span>
-                <input
-                        class="detail"
-                        name="source"
-                        t-on-change="captureChange"
-                        t-model="changes.source"
-                        placeholder="Source"
                 />
             </div>
         </xpath>

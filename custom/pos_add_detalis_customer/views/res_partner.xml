@@ -5,8 +5,9 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="text_test"/>
-                <field name="parent_name"/>
+<!--                <field name="text_test"/>-->
+<!--                <field name="parent_name" readonly="0"/>-->
+                <field name="father_name"/>
                 <field name="phone_whatsapp" widget="phone"/>
                 <field name="phone_2" widget="phone"/>
                 <field name="email_parent" widget="email"/>

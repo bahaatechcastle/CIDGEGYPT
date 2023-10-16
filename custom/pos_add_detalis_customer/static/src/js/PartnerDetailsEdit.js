@@ -10,8 +10,8 @@ odoo.define('pos_add_one_field_custmer.PartnerDetailsEdit', function (require) {
         setup() {
             super.setup();
             const partner = this.props.partner;
-            this.changes.text_test = partner.text_test || "";
-            this.changes.parent_name = partner.parent_name || "";
+//            this.changes.text_test = partner.text_test || "";
+            this.changes.father_name = partner.father_name || "";
             this.changes.birthday_kid = partner.birthday_kid || "";
             this.changes.email_parent = partner.email_parent || "";
             this.changes.phone_whatsapp = partner.phone_whatsapp || "";
@@ -49,8 +49,8 @@ odoo.define('pos_add_one_field_custmer.PartnerDetailsEdit', function (require) {
                 });
             }
             if (
-                (!this.props.partner.parent_name && !processedChanges.parent_name) ||
-                processedChanges.name === ""
+                (!this.props.partner.father_name && !processedChanges.father_name) ||
+                processedChanges.father_name === ""
             ) {
                 return this.showPopup("ErrorPopup", {
                     title: _t("A Customer parent_name Is Required"),
@@ -97,8 +97,8 @@ odoo.define('pos_add_one_field_custmer.PartnerDetailsEdit', function (require) {
                 });
             }
             if (
-                (!this.props.partner.phone && !processedChanges.phone) ||
-                processedChanges.phone === ""
+                (!this.props.partner.mobile && !processedChanges.mobile) ||
+                processedChanges.mobile === ""
             ) {
                 return this.showPopup("ErrorPopup", {
                     title: _t("A Customer phone Is Required"),
@@ -106,12 +106,21 @@ odoo.define('pos_add_one_field_custmer.PartnerDetailsEdit', function (require) {
             }
             if (
                 (!this.props.partner.email_parent && !processedChanges.email_parent) ||
-                processedChanges.phone === ""
+                processedChanges.email_parent === ""
             ) {
                 return this.showPopup("ErrorPopup", {
                     title: _t("A Customer email_parent Is Required"),
                 });
             }
+            if (
+                (!this.props.partner.source && !processedChanges.source) ||
+                processedChanges.source === ""
+            ) {
+                return this.showPopup("ErrorPopup", {
+                    title: _t("A Customer source Is Required"),
+                });
+            }
+
 
 
             processedChanges.id = this.props.partner.id || false;
