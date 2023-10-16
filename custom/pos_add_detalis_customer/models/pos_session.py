@@ -14,7 +14,7 @@ class PosSession(models.Model):
         res["search_params"]["fields"].append("phone_2")
         res["search_params"]["fields"].append("profession")
         res["search_params"]["fields"].append("note")
-        res["search_params"]["fields"].append("father_name")
+        res["search_params"]["fields"].append("parent_name")
         res["search_params"]["fields"].append("source")
         res["search_params"]["fields"].append("birthday_kid")
         res["search_params"]["fields"].append("age")

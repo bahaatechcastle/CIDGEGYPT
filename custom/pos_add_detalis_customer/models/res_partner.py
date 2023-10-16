@@ -13,7 +13,6 @@ class ResPartner(models.Model):
     profession = fields.Char(string='Profession', default=False, )
     note = fields.Text(string='Note', default=False, )
     parent_name = fields.Char(string='Parent Name')
-    father_name = fields.Char(string='Parent Name')
     # source_id = fields.Many2one('utm.source', string='Source')
     source = fields.Char(string='Source')
     birthday_kid = fields.Date(string='Kid Birthday', required=False)
