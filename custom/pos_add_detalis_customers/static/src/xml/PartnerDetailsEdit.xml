@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t
+            t-name="PartnerDetailsEdit"
+            t-inherit="point_of_sale.PartnerDetailsEdit"
+            t-inherit-mode="extension"
+            owl="1"
+    >
+        <xpath expr="//div[hasclass('partner-details-left')]/div[3]" position="replace"/>
+        <xpath expr="//div[hasclass('partner-details-right')]/div[5]" position="replace"/>
+        <xpath expr="//div[hasclass('partner-details-right')]/div[5]" position="replace"/>
+        <xpath expr="//div[hasclass('partner-details-right')]" position="inside">
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Marketing Chanel</span>
+                <input
+                        class="detail"
+                        name="source"
+                        t-on-change="captureChange"
+                        t-model="changes.source"
+                        placeholder="Source"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Email Parent</span>
+                <input
+                        class="detail"
+                        name="email_parent"
+                        t-on-change="captureChange"
+                        t-model="changes.email_parent"
+                        placeholder="Email Parent"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Phone Whatsapp</span>
+                <input
+                        class="detail"
+                        name="phone_whatsapp"
+                        t-on-change="captureChange"
+                        t-model="changes.phone_whatsapp"
+                        placeholder="Phone Whatsapp"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Phone 2</span>
+                <input
+                        class="detail"
+                        name="phone_2"
+                        t-on-change="captureChange"
+                        t-model="changes.phone_2"
+                        placeholder="Phone 2"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Profession</span>
+                <input
+                        class="detail"
+                        name="profession"
+                        t-on-change="captureChange"
+                        t-model="changes.profession"
+                        placeholder="Profession"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Note</span>
+                <input
+                        class="detail"
+                        name="note"
+                        t-on-change="captureChange"
+                        t-model="changes.note"
+                        placeholder="Note"
+                />
+            </div>
+        </xpath>
+        <xpath expr="//select[@name='country_id']/.." position="after">
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Parent Name</span>
+                <input
+                        class="detail"
+                        name="father_name"
+                        t-on-change="captureChange"
+                        t-model="changes.father_name"
+                        placeholder="Parent Name"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Kid Birthday</span>
+                <input
+                        class="detail"
+                        name="birthday_kid"
+                        type="date"
+                        t-on-change="captureChange"
+                        t-model="changes.birthday_kid"
+                        placeholder="Write The Birthday"
+                />
+            </div>
+            <div class="partner-detail partner-detail-pos-comment">
+                <span class="label">Age</span>
+                <input
+                        class="detail"
+                        name="age"
+                        t-on-change="captureChange"
+                        t-model="changes.age"
+                        placeholder="Write The Age"
+                />
+            </div>
+        </xpath>
+    </t>
+
+</templates>
