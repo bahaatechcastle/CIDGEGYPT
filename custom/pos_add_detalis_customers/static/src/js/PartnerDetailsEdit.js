@@ -1,4 +1,4 @@
-odoo.define('pos_add_one_field_custmer.PartnerDetailsEdit', function (require) {
+odoo.define('pos_add_detalis_customers.PartnerDetailsEdit', function (require) {
     "use strict";
 
     const { _t } = require("web.core");
